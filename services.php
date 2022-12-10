@@ -1,3 +1,7 @@
+<?php
+
+?>
+
 
 
 <!DOCTYPE html>
@@ -10,7 +14,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Better Than At Home</title>
+      <title>Services | Better Than At Home</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -33,10 +37,6 @@
    </head>
    <!-- body -->
    <body class="main-layout">
-      <!-- loader  -->
-      <div class="loader_bg">
-         <div class="loader"><img src="images/loading.gif" alt="#" /></div>
-      </div>
       <!-- end loader -->
       <!-- header -->
       <header>
@@ -48,7 +48,7 @@
                      <div class="full">
                         <div class="center-desk">
                            <div class="logo">
-                              <a href="index.html"><img src="images/logo-white.png" alt="#" /></a>
+                              <a href="index.php"><img src="images/logo-black.png" alt="#" /></a>
                            </div>
                         </div>
                      </div>
@@ -61,16 +61,16 @@
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                            <ul class="navbar-nav mr-auto">
                               <li class="nav-item">
-                                 <a class="nav-link" href="#about">Services</a>
+                                 <a class="nav-link" href="services.php" style="color: #fd7e14;">Services</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="#about">About</a>
+                                 <a class="nav-link" href="index.php#about" style="color: #fd7e14;">About</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="#contact">Contact us</a>
+                                 <a class="nav-link" href="index.php#contact" style="color: #fd7e14;">Contact us</a>
                               </li>
                            </ul>
-                           <div class="sign_btn"><a href="#">Sign in</a></div>
+                           <div class="sign_btn"><a href="auth/sign-in.php">Sign in</a></div>
                         </div>
                      </nav>
                   </div>
@@ -80,23 +80,6 @@
       </header>
       <!-- end header inner -->
       <!-- end header -->
-      <!-- banner -->
-      <section class="banner_main">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="text-bg">
-                     <div class="padding_lert">
-                        <h1>WELCOME TO Better-Than-At-Home </h1>
-                        <p>Get the best catering services for your weddings, birthdays, or luncheons</p>
-                        <a href="#">Read More</a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </section>
-      <!-- end banner -->
       <!-- form_lebal -->
       <section>
          <div class="container">
@@ -346,7 +329,7 @@
                <div class="container">
                   <div class="row">
                      <div class="col-md-12">
-                        <p>Copyright 2019 All Right Reserved By <a href="https://html.design/"> Free Html Templates</a></p>
+                        <p>Copyright 2022 Better Than At Home. All Right Reserved.</p>
                      </div>
                   </div>
                </div>
