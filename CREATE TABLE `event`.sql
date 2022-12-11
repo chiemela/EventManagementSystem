@@ -1,5 +1,5 @@
-CREATE TABLE `event`.`customer` (
-    `user_id` INT NOT NULL AUTO_INCREMENT , 
+CREATE TABLE `event`.`users` (
+    `id` INT NOT NULL AUTO_INCREMENT , 
     `first_name` VARCHAR(225) NOT NULL , 
     `last_name` VARCHAR(225) NOT NULL , 
     `phone` VARCHAR(225) NOT NULL , 
@@ -7,11 +7,10 @@ CREATE TABLE `event`.`customer` (
     `password` VARCHAR(1035) NOT NULL , 
     `address` VARCHAR(1035) NOT NULL , 
     `location` VARCHAR(225) NOT NULL , 
-    `gender` VARCHAR(150) NOT NULL , 
-    `reg_date` DATE NOT NULL , 
+    `role` VARCHAR(25) NULL , 
     `last_updated_datetime` DATETIME NULL , 
     `creation_date` DATETIME DEFAULT CURRENT_TIMESTAMP , 
-    PRIMARY KEY (`user_id`)
+    PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
 
 CREATE TABLE `event`.`service` (
@@ -33,7 +32,7 @@ CREATE TABLE `event`.`booking` (
     `booking_service_type` VARCHAR(225) NOT NULL , 
     `booking_creation_date` DATETIME DEFAULT CURRENT_TIMESTAMP ,
     PRIMARY KEY (`booking_id`) ,
-    CONSTRAINT `user_id` FOREIGN KEY (user_id) REFERENCES customer (user_id) ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT `user_id` FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB;
 
 CREATE TABLE `event`.`payments` (
@@ -45,7 +44,7 @@ CREATE TABLE `event`.`payments` (
     `transaction_status` VARCHAR(225) NOT NULL , 
     `transaction_creation_date` DATETIME DEFAULT CURRENT_TIMESTAMP ,
     PRIMARY KEY (`payments_id`) ,
-    CONSTRAINT `customer_id` FOREIGN KEY (customer_id) REFERENCES customer (user_id) ON DELETE CASCADE ON UPDATE CASCADE ,
+    CONSTRAINT `customer_id` FOREIGN KEY (customer_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE ,
     CONSTRAINT `booking_id` FOREIGN KEY (booking_id) REFERENCES booking (booking_id) ON DELETE CASCADE ON UPDATE CASCADE ,
     CONSTRAINT `service_id` FOREIGN KEY (service_id) REFERENCES service (service_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB;

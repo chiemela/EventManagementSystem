@@ -1,5 +1,7 @@
 <?php
-
+// start session
+session_start();
+$cart_items_count = 0;
 ?>
 
 
@@ -31,10 +33,24 @@
       <!-- Tweaks for older IEs-->
       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <link href="css/sb-admin-2.min.css" rel="stylesheet">
+      <link href="css/sb-admin-2.css" rel="stylesheet">
       <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
    </head>
+   <style>
+      .nav-horizontal-line {
+         border:none;
+         height: 20px;
+         width: 70%;
+         height: 50px;
+         margin-top: -10px;
+         border-bottom: 1px solid #CDCCCC;
+         box-shadow: 0 20px 20px -20px #333;
+         margin-bottom: 150px;
+      }
+   </style>
    <!-- body -->
    <body class="main-layout">
       <!-- end loader -->
@@ -70,13 +86,28 @@
                                  <a class="nav-link" href="index.php#contact" style="color: #fd7e14;">Contact us</a>
                               </li>
                            </ul>
-                           <div class="sign_btn"><a href="auth/sign-in.php">Sign in</a></div>
+                           <?php
+                           // Check if the user is already logged in, if yes then display the Sign out button
+                           if(isset($_SESSION["loggedin"])){
+                              echo"
+                                 <div class='sign_btn'><a href='logout.php'>Logout</a></div>
+                                 <div class='nav-link'><i class='fa fa-shopping-cart' aria-hidden='true' style='font-size:20px;'></i><a href='#'></a><span class='badge badge-danger badge-counter'>".$cart_items_count."</span></div>
+
+                              ";
+                           } else {
+                              echo"
+                                 <div class='sign_btn'><a href='./auth/sign-in.php'>Sign in</a></div>
+                              ";
+                           }
+                           ?>
                         </div>
                      </nav>
                   </div>
                </div>
             </div>
          </div>
+         <br><br>
+         <hr class="nav-horizontal-line">
       </header>
       <!-- end header inner -->
       <!-- end header -->
@@ -118,7 +149,8 @@
                      <div class="titlepage">
                         <h2><span class="text_norlam">Choose The Perfect</span> <br>Venue</h2>
                      </div>
-                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit </p>
+                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+                     </p>
                      <a class="read_more" href="#">See More</a>
                   </div>
                </div>
