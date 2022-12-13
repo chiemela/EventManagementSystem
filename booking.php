@@ -2,7 +2,6 @@
 // start session
 session_start();
 $cart_items_count = 0;
-$first_name = "";
 ?>
 
 

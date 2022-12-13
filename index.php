@@ -2,7 +2,7 @@
 // start session
 session_start();
 $cart_items_count = 0;
-
+try {
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
    date_default_timezone_set("Europe/London");
@@ -12,6 +12,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
    $email = "";
    $phone = "";
    $message = "";
+   $name = "Mrs A. Cook";
    // Check if full_name is empty
    if(empty(trim($_POST["full_name"]))){
       $full_name_err = "Please enter your full name.";
@@ -42,11 +43,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
    if(empty($full_name_err) || empty($email_err) || empty($phone_err) || empty($message_err) ){
 
-      // Multiple recipients
-      $to = $email; // note the comma
-
       // Subject
-      $subject = 'Event Mgt. System';
+      $emailSubject = 'Event Management System';
 
       // Message
       $message_body = '
@@ -79,22 +77,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       ';
 
       // To send HTML mail, the Content-type header must be set
-      $headers[] = 'MIME-Version: 1.0';
-      $headers[] = 'Content-type: text/html; charset=iso-8859-1';
-
-      // Additional headers
-      $headers[] = 'To: Chiemela <chiemela123@gmail.com>';
-      $headers[] = 'From: SWAV <support@eliamtechnologies.com>';
-
-
-      
-      // Sending email
-      if (mail($to, $subject, $message_body, implode("\r\n", $headers))) {
-
+      $toEmail = $email;
+      $fromEmail = 'BetterThanAtHome@ase.uk';
+      $name = 'Mrs A. Cook';
+      $emailSubject = 'New email from your Better-Than-At-Home contant form';
+      $headers = ['From' => $fromEmail, 'Reply-To' => $fromEmail, 'Content-type' => 'text/html; charset=iso-8859-1'];
+      $bodyParagraphs = ["Name: {$name}", "Email: {$fromEmail}", "Message:", $message_body];
+      $body = join(PHP_EOL, $bodyParagraphs);
+      if (mail($toEmail, $emailSubject, $body, $headers)) {
          header("location: index.php#contact");
-         
       }
    }
+}
+} catch (Exception $e) {
+   // do nothing
 }
 ?>
 
@@ -121,7 +117,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       <!-- Responsive-->
       <link rel="stylesheet" href="css/responsive.css">
       <!-- favicon -->
-      <link rel="icon" href="images/logo-white.png" type="image/gif" />
+      <link rel="icon" href="images/logo2.png" type="image/gif" />
       <!-- Scrollbar Custom CSS -->
       <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
       <!-- Tweaks for older IEs-->
@@ -137,57 +133,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
    <body class="main-layout">
       <!-- end loader -->
       <!-- header -->
-      <header>
-         <!-- header inner -->
-         <div class="header">
-            <div class="container">
-               <div class="row">
-                  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
-                     <div class="full">
-                        <div class="center-desk">
-                           <div class="logo">
-                              <a href="index.php"><img src="images/logo-white.png" alt="#" /></a>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-                     <nav class="navigation navbar navbar-expand-md navbar-dark ">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarsExample04">
-                           <ul class="navbar-nav mr-auto">
-                              <li class="nav-item">
-                                 <a class="nav-link" href="services.php">Services</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="#about">About</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="#contact">Contact us</a>
-                              </li>
-                           </ul>
-                           <?php
-                           // Check if the user is already logged in, if yes then display the Sign out button
-                           if(isset($_SESSION["loggedin"])){
-                              echo"
-                                 <div class='sign_btn'><a href='logout.php'>Logout</a></div>
-                                 <div class='nav-link'><i class='fa fa-shopping-cart' aria-hidden='true' style='font-size:20px; color:white;'></i><a href='#'></a><span class='badge badge-danger badge-counter'>".$cart_items_count."</span></div>
-                              ";
-                           } else {
-                              echo"
-                                 <div class='sign_btn'><a href='./auth/sign-in.php'>Sign in</a></div>
-                              ";
-                           }
-                           ?>
-                        </div>
-                     </nav>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </header>
+      <?php
+         $page = "INDEX";
+         include "./header.php";
+      ?>
       <!-- end header inner -->
       <!-- end header -->
       <!-- banner -->
@@ -268,7 +217,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                      <div class="titlepage">
                         <h2><span class="text_norlam">Our Best Vegan </span> <br>Breakfast</h2>
                      </div>
-                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit </p>
+                     <p>Our vegan breakfast is truly delicious and will satisfy even the most discerning palate. The oatmeal is creamy and hearty, with just the right amount of sweetness from the maple syrup and fresh berries. The scrambled tofu is expertly seasoned with herbs and spices, adding a savory element to the dish. The combination of flavors and textures is simply mouthwatering. Plus, you can enjoy this delicious meal knowing that it is completely plant-based and cruelty-free. It's the perfect way to start your day on a satisfying and healthy note. </p>
                   </div>
                </div>
             </div>
@@ -276,14 +225,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       </div>
       <!-- end our  section -->
       <!-- about -->
-      <div id="about"  class="about">
+      <div id="about" class="about">
          <div class="container-fluid">
             <div class="row d_flex">
                <div class="col-md-6">
                   <div class="about_text">
                      <div class="titlepage">
-                        <h2>About Our Hotel</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit </p>
+                        <h2>About Us</h2>
+                        <p>Better-Than-At-Home is a small, family-owned business that specializes in catering delicious and beautifully presented meals for a variety of business and social occasions. Founded by a team of experienced chefs and event planners, we are dedicated to providing exceptional service and high-quality food that will impress your guests and make your event a success. Our menus are carefully curated to cater to a variety of dietary preferences, including vegan options. Whether you are planning a business luncheon, a wedding reception, or a banquet, we can provide the perfect spread of dishes to suit your needs. Contact us today to discuss your catering needs and let us help make your event a memorable one. </p>
                      </div>
                   </div>
                </div>

@@ -9,7 +9,7 @@ if(isset($_SESSION["loggedin"])){
     header("location: ../services.php");
     exit;
 }
- 
+try {
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
@@ -121,12 +121,68 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
-                // If registration is successfull then Initialize the session
-                session_start();
                 $_SESSION["loggedin"] = "YES";
+                // send confirmation email
+                date_default_timezone_set("Europe/London");
+                $today = date("F j, Y, g:i a")." local time"; // format is March 10, 2001, 5:16 pm
+                // Subject
+                $emailSubject = 'Event Management System';
+                // Message
+                $message_body = '
+                <html>
+                <head>
+                <title>Message body | Event Management System</title>
+                </head>
+                <body>
+                    <div id = "container">
+                        <br/>
+                        <table>
+                            <tr>
+                                Hi '.$first_name.',
+                                <br/>
+                                <br/>
+                                Your registration was successful. Please find below your login details.
+                                <br/>
+                                Email: '.$email.'
+                                <br/>
+                                Password: '.$password.'
+                                <br/>
+                                Registration date: '.$today.'
+                                <br/>
+                                Login URL: https://eliamtechnologies.com/event-management-system/auth/sign-in.php.
+                                <br/>
+                                <br/>
+                                Regairds,
+                                <br/>
+                                Mrs A. Cook
+                                <br/>
+                                Owner
+                            </tr>
+                        </table>
+                        <br/>
+                    </div>
+                </body>
+                </html>
+                ';
+                // prepare the variables for the mail() funtion
+                $toEmail = $email;
+                $fromEmail = 'BetterThanAtHome@ase.uk';
+                $name = 'Mrs A. Cook';
+                $emailSubject = 'New user registration on Better-Than-At-Home';
+                $headers = ['From' => $fromEmail, 'Reply-To' => $fromEmail, 'Content-type' => 'text/html; charset=iso-8859-1'];
+                $bodyParagraphs = ["Name: {$name}", "Email: {$fromEmail}", "Message:", $message_body];
+                $body = join(PHP_EOL, $bodyParagraphs);
                 $URL_redirect = "../services.php";
+                $_SESSION["first_name"] = $first_name;
                 // Redirect to service page
                 header("location: $URL_redirect");
+                /*
+                if (mail($toEmail, $emailSubject, $body, $headers)) {
+                    $URL_redirect = "../services.php";
+                    $_SESSION["first_name"] = $first_name;
+                    // Redirect to service page
+                    header("location: $URL_redirect");
+                }*/
             } else{
                 echo "Something went wrong. Please try again later. $sql. " . mysqli_error($link);
             }
@@ -141,6 +197,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Close connection
     mysqli_close($link);
+}
+} catch (Exception $e) {
+    // do nothing
 }
 ?>
 
@@ -165,7 +224,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <!-- Responsive-->
     <link rel="stylesheet" href="../css/responsive.css">
     <!-- favicon -->
-    <link rel="icon" href="../images/logo-white.png" type="image/gif" />
+    <link rel="icon" href="../images/logo2.png" type="image/gif" />
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="../css/jquery.mCustomScrollbar.min.css">
     <!-- Tweaks for older IEs-->
@@ -176,45 +235,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <body>
 
     <!-- header -->
-    <header>
-        <!-- header inner -->
-        <div class="header">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
-                    <div class="full">
-                    <div class="center-desk">
-                        <div class="logo">
-                            <a href="index.php"><img src="../images/logo-black.png" alt="#" style="padding: 5px;"/></a>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-                    <nav class="navigation navbar navbar-expand-md navbar-dark ">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarsExample04">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="../services.php" style="color: #fd7e14;">Services</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../index.php#about" style="color: #fd7e14;">About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../index.php#contact" style="color: #fd7e14;">Contact us</a>
-                            </li>
-                        </ul>
-                        <div class="sign_btn"><a href="sign-in.php">Sign in</a></div>
-                    </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
-        </div>
-    </header>
+    <?php
+        $page = "AUTH";
+        include "../header.php";
+    ?>
     <!-- end header inner -->
     <!-- end header -->
     <div class="main">

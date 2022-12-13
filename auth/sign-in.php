@@ -9,7 +9,7 @@ if(isset($_SESSION["loggedin"])){
     header("location: ../services.php");
     exit;
 }
-
+try {
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     
@@ -30,7 +30,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($password_err) || empty($email_err) ){
         // Prepare a select statement
-        $sql = "SELECT id, email, password FROM users WHERE email = ?";
+        $sql = "SELECT id, email, first_name, password FROM users WHERE email = ?";
         
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
@@ -46,12 +46,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // Check if email exists, if yes then verify password
                 if(mysqli_stmt_num_rows($stmt) == 1){                    
                     // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $id, $email, $hashed_password);
+                    mysqli_stmt_bind_result($stmt, $id, $email, $first_name, $hashed_password);
                     if(mysqli_stmt_fetch($stmt)){
                         if(password_verify($password, $hashed_password)){                   
                             session_start();      
                             // Store data in session variables
                             $_SESSION["loggedin"] = "YES";
+                            $_SESSION["first_name"] = $first_name;
                             $_SESSION["logged_message"] = "Login Successful";
                             $URL_redirect = "../services.php";
                             
@@ -78,6 +79,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Close connection
     mysqli_close($link);
 }
+} catch (Exception $e) {
+    // do nothing
+}
 ?>
 
 
@@ -101,7 +105,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <!-- Responsive-->
     <link rel="stylesheet" href="../css/responsive.css">
     <!-- favicon -->
-    <link rel="icon" href="../images/logo-white.png" type="image/png" />
+    <link rel="icon" href="../images/logo2.png" type="image/png" />
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="../css/jquery.mCustomScrollbar.min.css">
     <!-- Tweaks for older IEs-->
@@ -112,45 +116,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <body>
 
     <!-- header -->
-    <header>
-        <!-- header inner -->
-        <div class="header">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
-                    <div class="full">
-                    <div class="center-desk">
-                        <div class="logo">
-                            <a href="index.php"><img src="../images/logo-black.png" alt="#" style="padding: 5px;"/></a>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-                    <nav class="navigation navbar navbar-expand-md navbar-dark ">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarsExample04">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="../services.php" style="color: #fd7e14;">Services</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../index.php#about" style="color: #fd7e14;">About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../index.php#contact" style="color: #fd7e14;">Contact us</a>
-                            </li>
-                        </ul>
-                        <div class="sign_btn"><a href="sign-in.php">Sign in</a></div>
-                    </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
-        </div>
-    </header>
+    <?php
+        $page = "AUTH";
+        include "../header.php";
+    ?>
     <!-- end header inner -->
     <!-- end header -->
     <div class="main">
