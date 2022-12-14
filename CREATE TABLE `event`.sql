@@ -29,7 +29,8 @@ CREATE TABLE `event`.`booking` (
     `booking_id` INT NOT NULL AUTO_INCREMENT ,
     `user_id` INT NOT NULL ,
     `booking_service_id` DECIMAL(12, 2) NOT NULL , 
-    `booking_service_type` VARCHAR(225) NOT NULL , 
+    `booking_date` DATE NOT NULL , 
+    `booking_time` VARCHAR(225) NOT NULL ,
     `booking_creation_date` DATETIME DEFAULT CURRENT_TIMESTAMP ,
     PRIMARY KEY (`booking_id`) ,
     CONSTRAINT `user_id` FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE

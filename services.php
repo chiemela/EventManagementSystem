@@ -1,8 +1,12 @@
 <?php
 // start session
 session_start();
-$cart_items_count = 0;
+$cart_items_count = 3;
 $first_name = "";
+function redirect_to_booking_page(){
+   // Redirect user to welcome page
+   header("location: ./booking.php");
+}
 ?>
 
 
@@ -75,28 +79,12 @@ $first_name = "";
                   <form class="form_book">
                      <div class="titlepage">
                         <h2><span class="text_norlam">Choose The Perfect Vegan</span> Meal</h2>
-                        <div class="copyright">
+                        <div class="copyright" style="margin-bottom:-120px;">
                            <p style="margin-top:-50px;">Available Dishes</p>
+                           <a href="./booking.php" class="book_btn" style="margin-top:-50px; margin-bottom:-250px; color:white;" >Book Now</a>
                         </div>
                      </div>
                      <br/>
-                     <div class="row">
-                        <div class="col-md-3">
-                           <label class="date">ARRIVAL DATE</label>
-                           <input class="book_n"  type="date" >
-                        </div>
-                        <div class="col-md-3">
-                           <label class="date">DEPARTURE DATE</label>
-                           <input class="book_n"  type="date" >
-                        </div>
-                        <div class="col-md-3">
-                           <label class="date">PERSON</label>
-                           <input class="book_n" placeholder="2" type="type" name="2">
-                        </div>
-                        <div class="col-md-3">
-                           <button class="book_btn">Book Now</button>
-                        </div>
-                     </div>
                   </form>
                </div>
             </div>
@@ -111,24 +99,24 @@ $first_name = "";
                   <div class="img_box">
                      <figure><img src="images/img9.jpg" alt="#" class="rounded"/></figure>
                   </div>
-                  <p>Name goes here</p>
-                  <p style="margin-top:-10px;">£10.50</p>
+                  <p>Vegetable Plate</p>
+                  <p style="margin-top:-10px;">£20.50</p>
                   <button class="book_btn mt-0 mb-5">Add to Cart</button>
                </div>
                <div class="col-md-4">
                   <div class="img_box">
                      <figure><img src="images/img10.jpg" alt="#" class="rounded"/></figure>
                   </div>
-                  <p>Name goes here</p>
-                  <p style="margin-top:-10px;">£10.50</p>
+                  <p>Vegan Salad Bowl</p>
+                  <p style="margin-top:-10px;">£15.75</p>
                   <button class="book_btn mt-0 mb-5">Add to Cart</button>
                </div>
                <div class="col-md-4">
                   <div class="img_box">
                      <figure><img src="images/img11.jpg" alt="#" class="rounded"/></figure>
                   </div>
-                  <p>Name goes here</p>
-                  <p style="margin-top:-10px;">£10.50</p>
+                  <p>Cauliflower</p>
+                  <p style="margin-top:-10px;">£35.10</p>
                   <button class="book_btn mt-0 mb-5">Add to Cart</button>
                </div>
             </div>
@@ -137,24 +125,24 @@ $first_name = "";
                   <div class="img_box">
                      <figure><img src="images/img12.jpg" alt="#" class="rounded"/></figure>
                   </div>
-                  <p>Name goes here</p>
-                  <p style="margin-top:-10px;">£10.50</p>
+                  <p>Vegan Guacamole</p>
+                  <p style="margin-top:-10px;">£15.50</p>
                   <button class="book_btn mt-0 mb-5">Add to Cart</button>
                </div>
                <div class="col-md-4">
                   <div class="img_box">
                      <figure><img src="images/img13.jpg" alt="#" class="rounded"/></figure>
                   </div>
-                  <p>Name goes here</p>
-                  <p style="margin-top:-10px;">£10.50</p>
+                  <p>Avacado Toast</p>
+                  <p style="margin-top:-10px;">£28.35</p>
                   <button class="book_btn mt-0 mb-5">Add to Cart</button>
                </div>
                <div class="col-md-4">
                   <div class="img_box">
                      <figure><img src="images/img14.jpg" alt="#" class="rounded"/></figure>
                   </div>
-                  <p>Name goes here</p>
-                  <p style="margin-top:-10px;">£10.50</p>
+                  <p>Roasted Vegetables</p>
+                  <p style="margin-top:-10px;">£24.50</p>
                   <button class="book_btn mt-0 mb-5">Add to Cart</button>
                </div>
             </div>
@@ -163,24 +151,24 @@ $first_name = "";
                   <div class="img_box">
                      <figure><img src="images/img15.jpg" alt="#" class="rounded"/></figure>
                   </div>
-                  <p>Name goes here</p>
-                  <p style="margin-top:-10px;">£10.50</p>
+                  <p>Vegan Veggie Bowl</p>
+                  <p style="margin-top:-10px;">£21.99</p>
                   <button class="book_btn mt-0 mb-5">Add to Cart</button>
                </div>
                <div class="col-md-4">
                   <div class="img_box">
                      <figure><img src="images/img16.jpg" alt="#" class="rounded"/></figure>
                   </div>
-                  <p>Name goes here</p>
-                  <p style="margin-top:-10px;">£10.50</p>
+                  <p>Greek Salad</p>
+                  <p style="margin-top:-10px;">£27.00</p>
                   <button class="book_btn mt-0 mb-5">Add to Cart</button>
                </div>
                <div class="col-md-4">
                   <div class="img_box">
                      <figure><img src="images/img17.jpg" alt="#" class="rounded"/></figure>
                   </div>
-                  <p>Name goes here</p>
-                  <p style="margin-top:-10px;">£10.50</p>
+                  <p>Porridge</p>
+                  <p style="margin-top:-10px;">£11.50</p>
                   <button class="book_btn mt-0 mb-5">Add to Cart</button>
                </div>
             </div>

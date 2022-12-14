@@ -1,7 +1,7 @@
 <?php
 // start session
 session_start();
-$cart_items_count = 0;
+$cart_items_count = 3;
 try {
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){

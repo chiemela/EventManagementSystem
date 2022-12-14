@@ -182,7 +182,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $_SESSION["first_name"] = $first_name;
                     // Redirect to service page
                     header("location: $URL_redirect");
-                }*/
+                }
+                */
             } else{
                 echo "Something went wrong. Please try again later. $sql. " . mysqli_error($link);
             }
