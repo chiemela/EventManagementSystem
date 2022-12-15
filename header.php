@@ -37,8 +37,8 @@ if ($page === "INDEX") {
                             $first_name = $_SESSION["first_name"];
                             echo"
                                 <a href='./booking.php'>
-                                <div class='nav-link' style='margin-left:50px; margin-right:-50px; color:white;'>$first_name&nbsp;<i class='fa fa-shopping-cart' aria-hidden='true'></i><span class='badge badge-danger badge-counter'>".$cart_items_count."</span></div></a>
-                                <div class='sign_btn'><a href='logout.php'>Logout</a></div>
+                                <div class='nav-link' style='margin-left:50px; margin-right:-50px; color:white;'>$first_name&nbsp;<i class='fa fa-shopping-cart' aria-hidden='true'></i></i><span class='badge badge-danger badge-counter'>".$cart_items_count."</span></div></a>
+                                <div class='sign_btn'><a href='logout.php'>Logout&nbsp;<i class='fa fa-sign-out' aria-hidden='true'></i></a></div>
                             ";
                         } else {
                             echo"
@@ -93,7 +93,7 @@ if ($page === "INDEX") {
                                     echo"
                                     <a href='./booking.php'>
                                     <div class='nav-link' style='margin-left:50px; margin-right:-50px;'>$first_name&nbsp;<i class='fa fa-shopping-cart' aria-hidden='true'></i><span class='badge badge-danger badge-counter'>".$cart_items_count."</span></div></a>
-                                    <div class='sign_btn'><a href='logout.php'>Logout</a></div>
+                                    <div class='sign_btn'><a href='logout.php'>Logout&nbsp;<i class='fa fa-sign-out' aria-hidden='true'></i></a></div>
                                     ";
                                 } else {
                                     echo"

@@ -1,7 +1,14 @@
 <?php
 // start session
 session_start();
-$cart_items_count = 3;
+$cart_items_count = 0;
+// get cart item
+if(!empty($_SESSION["cart_items"])){
+   $cart_items = $_SESSION["cart_items"];
+   $cart_items = explode(",", $cart_items);
+   array_pop($cart_items);
+   $cart_items_count = count($cart_items);
+}
 try {
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -99,35 +106,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <!-- basic -->
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <!-- mobile metas -->
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-      <!-- site metas -->
       <title>Better Than At Home</title>
-      <meta name="keywords" content="">
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <!-- bootstrap css -->
-      <link rel="stylesheet" href="css/bootstrap.min.css">
-      <!-- style css -->
-      <link rel="stylesheet" href="css/style.css">
-      <!-- Responsive-->
-      <link rel="stylesheet" href="css/responsive.css">
-      <!-- favicon -->
-      <link rel="icon" href="images/logo2.png" type="image/gif" />
-      <!-- Scrollbar Custom CSS -->
-      <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
-      <!-- Tweaks for older IEs-->
-      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-      <link href="css/sb-admin-2.min.css" rel="stylesheet">
-      <link href="css/sb-admin-2.css" rel="stylesheet">
-      <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+      
+      <?php
+         $page = "OTHER";
+         include "./css_link_and_meta.php";
+      ?>
+
    </head>
    <!-- body -->
    <body class="main-layout">

@@ -1,8 +1,27 @@
 <?php
 // start session
 session_start();
-$cart_items_count = 3;
+$cart_items_count = 0;
 $first_name = "";
+$item_id_1 = "1";
+$item_id_2 = "2";
+$item_id_3 = "3";
+$item_id_4 = "4";
+$item_id_5 = "5";
+$item_id_6 = "6";
+$item_id_7 = "7";
+$item_id_8 = "8";
+$item_id_9 = "9";
+$sending_url = "&sending_url=booking.php";
+$cart_argument = "&cart_argument=REMOVE";
+
+// get cart item
+if(!empty($_SESSION["cart_items"])){
+   $cart_items = $_SESSION["cart_items"];
+   $cart_items = explode(",", $cart_items);
+   array_pop($cart_items);
+   $cart_items_count = count($cart_items);
+}
 ?>
 
 
@@ -10,32 +29,14 @@ $first_name = "";
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <!-- basic -->
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <!-- mobile metas -->
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
       <title>Booking | Better Than At Home</title>
-      <meta name="keywords" content="">
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <!-- bootstrap css -->
-      <link rel="stylesheet" href="css/bootstrap.min.css">
-      <!-- style css -->
-      <link rel="stylesheet" href="css/style.css">
-      <!-- Responsive-->
-      <link rel="stylesheet" href="css/responsive.css">
-      <!-- favicon -->
-      <link rel="icon" href="images/logo2.png" type="image/gif" />
-      <!-- Scrollbar Custom CSS -->
-      <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
-      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-      <link href="css/sb-admin-2.min.css" rel="stylesheet">
-      <link href="css/sb-admin-2.css" rel="stylesheet">
-      <!-- other additional links -->
+      
+      <?php
+         $page = "OTHER";
+         include "./css_link_and_meta.php";
+      ?>
+
    </head>
    <style>
       .nav-horizontal-line {
@@ -104,57 +105,219 @@ $first_name = "";
             <div class="row">
                <div class="col-xl-8 col-md-8 mb-4">
                   <div class="row">
-                     <!-- Booking page Card  -->
-                     <div class="col-xl-12 col-md-12 mb-4">
-                        <div class="card border-left-warning shadow h-100 py-2">
-                           <div class="card-body">
-                              <div class="row no-gutters align-items-center">
-                                    <div class="col-8 ml-2 mt-3 mb-0">
-                                       <figure><img src="images/img9.jpg" width="200px;" alt="#" class="rounded"/></figure>
+                     <?php
+                        // check if the cart items are empty
+                        if(!empty($_SESSION["cart_items"])){
+                           // check if selected item is already in the cart
+                           $item_id = "1";
+                           if(strpos($_SESSION["cart_items"], $item_id) !== false){
+                              $item_url = $item_id_1.$cart_argument.$sending_url;
+                              echo '
+                                 <!-- Booking page Card  -->
+                                 <div class="col-xl-12 col-md-12 mb-4">
+                                    <div class="card border-left-warning shadow h-100 py-2">
+                                       <div class="card-body">
+                                          <div class="row no-gutters align-items-center">
+                                                <div class="col-8 ml-2 mt-3 mb-0">
+                                                   <figure><img src="images/img9.jpg" width="200px;" alt="#" class="rounded"/></figure>
+                                                </div>
+                                                <div class="col mr-4">
+                                                   <p>Vegetable Plate</p>
+                                                   <p style="margin-top:-10px;">£20.50</p>
+                                                   <a href="./cart_manager.php?id=';echo $item_url; echo'" class="book_btn mt-0 mb-5">Remove Item <i class="fa fa-trash"></i></a>
+                                                </div>
+                                          </div>
+                                       </div>
                                     </div>
-                                    <div class="col mr-4">
-                                       <p>Vegetable Plate</p>
-                                       <p style="margin-top:-10px;">£20.50</p>
-                                       <button class="book_btn mt-0 mb-0 pl-4 pr-4">Remove Item</button>
+                                 </div>
+                              ';
+                           }
+                           $item_id = "2";
+                           if(strpos($_SESSION["cart_items"], $item_id) !== false){
+                              $item_url = $item_id_2.$cart_argument.$sending_url;
+                              echo '
+                                 <!-- Booking page Card  -->
+                                 <div class="col-xl-12 col-md-12 mb-4">
+                                    <div class="card border-left-warning shadow h-100 py-2">
+                                       <div class="card-body">
+                                          <div class="row no-gutters align-items-center">
+                                                <div class="col-8 ml-2 mt-3 mb-0">
+                                                   <figure><img src="images/img10.jpg" width="200px;" alt="#" class="rounded"/></figure>
+                                                </div>
+                                                <div class="col mr-4">
+                                                   <p>Vegetable Plate</p>
+                                                   <p style="margin-top:-10px;">£20.50</p>
+                                                   <a href="./cart_manager.php?id=';echo $item_url; echo'" class="book_btn mt-0 mb-5">Remove Item <i class="fa fa-trash"></i></a>
+                                                </div>
+                                          </div>
+                                       </div>
                                     </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- Booking page Card  -->
-                     <div class="col-xl-12 col-md-12 mb-4">
-                        <div class="card border-left-warning shadow h-100 py-2">
-                           <div class="card-body">
-                              <div class="row no-gutters align-items-center">
-                                    <div class="col-8 ml-2 mt-3 mb-0">
-                                       <figure><img src="images/img10.jpg" width="200px;" alt="#" class="rounded"/></figure>
+                                 </div>
+                              ';
+                           }
+                           $item_id = "3";
+                           if(strpos($_SESSION["cart_items"], $item_id) !== false){
+                              $item_url = $item_id_3.$cart_argument.$sending_url;
+                              echo '
+                                 <!-- Booking page Card  -->
+                                 <div class="col-xl-12 col-md-12 mb-4">
+                                    <div class="card border-left-warning shadow h-100 py-2">
+                                       <div class="card-body">
+                                          <div class="row no-gutters align-items-center">
+                                                <div class="col-8 ml-2 mt-3 mb-0">
+                                                   <figure><img src="images/img11.jpg" width="200px;" alt="#" class="rounded"/></figure>
+                                                </div>
+                                                <div class="col mr-4">
+                                                   <p>Vegetable Plate</p>
+                                                   <p style="margin-top:-10px;">£20.50</p>
+                                                   <a href="./cart_manager.php?id=';echo $item_url; echo'" class="book_btn mt-0 mb-5">Remove Item <i class="fa fa-trash"></i></a>
+                                                </div>
+                                          </div>
+                                       </div>
                                     </div>
-                                    <div class="col mr-4">
-                                       <p>Vegan Salad Bowl</p>
-                                       <p style="margin-top:-10px;">£15.75</p>
-                                       <button class="book_btn mt-0 mb-0 pl-4 pr-4">Remove Item</button>
+                                 </div>
+                              ';
+                           }
+                           $item_id = "4";
+                           if(strpos($_SESSION["cart_items"], $item_id) !== false){
+                              $item_url = $item_id_4.$cart_argument.$sending_url;
+                              echo '
+                                 <!-- Booking page Card  -->
+                                 <div class="col-xl-12 col-md-12 mb-4">
+                                    <div class="card border-left-warning shadow h-100 py-2">
+                                       <div class="card-body">
+                                          <div class="row no-gutters align-items-center">
+                                                <div class="col-8 ml-2 mt-3 mb-0">
+                                                   <figure><img src="images/img12.jpg" width="200px;" alt="#" class="rounded"/></figure>
+                                                </div>
+                                                <div class="col mr-4">
+                                                   <p>Vegetable Plate</p>
+                                                   <p style="margin-top:-10px;">£20.50</p>
+                                                   <a href="./cart_manager.php?id=';echo $item_url; echo'" class="book_btn mt-0 mb-5">Remove Item <i class="fa fa-trash"></i></a>
+                                                </div>
+                                          </div>
+                                       </div>
                                     </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- Booking page Card  -->
-                     <div class="col-xl-12 col-md-12 mb-4">
-                        <div class="card border-left-warning shadow h-100 py-2">
-                           <div class="card-body">
-                              <div class="row no-gutters align-items-center">
-                                    <div class="col-8 ml-2 mt-3 mb-0">
-                                       <figure><img src="images/img11.jpg" width="200px;" alt="#" class="rounded"/></figure>
+                                 </div>
+                              ';
+                           }
+                           $item_id = "5";
+                           if(strpos($_SESSION["cart_items"], $item_id) !== false){
+                              $item_url = $item_id_5.$cart_argument.$sending_url;
+                              echo '
+                                 <!-- Booking page Card  -->
+                                 <div class="col-xl-12 col-md-12 mb-4">
+                                    <div class="card border-left-warning shadow h-100 py-2">
+                                       <div class="card-body">
+                                          <div class="row no-gutters align-items-center">
+                                                <div class="col-8 ml-2 mt-3 mb-0">
+                                                   <figure><img src="images/img13.jpg" width="200px;" alt="#" class="rounded"/></figure>
+                                                </div>
+                                                <div class="col mr-4">
+                                                   <p>Vegetable Plate</p>
+                                                   <p style="margin-top:-10px;">£20.50</p>
+                                                   <a href="./cart_manager.php?id=';echo $item_url; echo'" class="book_btn mt-0 mb-5">Remove Item <i class="fa fa-trash"></i></a>
+                                                </div>
+                                          </div>
+                                       </div>
                                     </div>
-                                    <div class="col mr-4">
-                                       <p>Cauliflower</p>
-                                       <p style="margin-top:-10px;">£35.10</p>
-                                       <button class="book_btn mt-0 mb-0 pl-4 pr-4">Remove Item</button>
+                                 </div>
+                              ';
+                           }
+                           $item_id = "6";
+                           if(strpos($_SESSION["cart_items"], $item_id) !== false){
+                              $item_url = $item_id_6.$cart_argument.$sending_url;
+                              echo '
+                                 <!-- Booking page Card  -->
+                                 <div class="col-xl-12 col-md-12 mb-4">
+                                    <div class="card border-left-warning shadow h-100 py-2">
+                                       <div class="card-body">
+                                          <div class="row no-gutters align-items-center">
+                                                <div class="col-8 ml-2 mt-3 mb-0">
+                                                   <figure><img src="images/img14.jpg" width="200px;" alt="#" class="rounded"/></figure>
+                                                </div>
+                                                <div class="col mr-4">
+                                                   <p>Vegetable Plate</p>
+                                                   <p style="margin-top:-10px;">£20.50</p>
+                                                   <a href="./cart_manager.php?id=';echo $item_url; echo'" class="book_btn mt-0 mb-5">Remove Item <i class="fa fa-trash"></i></a>
+                                                </div>
+                                          </div>
+                                       </div>
                                     </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
+                                 </div>
+                              ';
+                           }
+                           $item_id = "7";
+                           if(strpos($_SESSION["cart_items"], $item_id) !== false){
+                              $item_url = $item_id_7.$cart_argument.$sending_url;
+                              echo '
+                                 <!-- Booking page Card  -->
+                                 <div class="col-xl-12 col-md-12 mb-4">
+                                    <div class="card border-left-warning shadow h-100 py-2">
+                                       <div class="card-body">
+                                          <div class="row no-gutters align-items-center">
+                                                <div class="col-8 ml-2 mt-3 mb-0">
+                                                   <figure><img src="images/img15.jpg" width="200px;" alt="#" class="rounded"/></figure>
+                                                </div>
+                                                <div class="col mr-4">
+                                                   <p>Vegetable Plate</p>
+                                                   <p style="margin-top:-10px;">£20.50</p>
+                                                   <a href="./cart_manager.php?id=';echo $item_url; echo'" class="book_btn mt-0 mb-5">Remove Item <i class="fa fa-trash"></i></a>
+                                                </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              ';
+                           }
+                           $item_id = "8";
+                           if(strpos($_SESSION["cart_items"], $item_id) !== false){
+                              $item_url = $item_id_8.$cart_argument.$sending_url;
+                              echo '
+                                 <!-- Booking page Card  -->
+                                 <div class="col-xl-12 col-md-12 mb-4">
+                                    <div class="card border-left-warning shadow h-100 py-2">
+                                       <div class="card-body">
+                                          <div class="row no-gutters align-items-center">
+                                                <div class="col-8 ml-2 mt-3 mb-0">
+                                                   <figure><img src="images/img16.jpg" width="200px;" alt="#" class="rounded"/></figure>
+                                                </div>
+                                                <div class="col mr-4">
+                                                   <p>Vegetable Plate</p>
+                                                   <p style="margin-top:-10px;">£20.50</p>
+                                                   <a href="./cart_manager.php?id=';echo $item_url; echo'" class="book_btn mt-0 mb-5">Remove Item <i class="fa fa-trash"></i></a>
+                                                </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              ';
+                           }
+                           $item_id = "9";
+                           if(strpos($_SESSION["cart_items"], $item_id) !== false){
+                              $item_url = $item_id_9.$cart_argument.$sending_url;
+                              echo '
+                                 <!-- Booking page Card  -->
+                                 <div class="col-xl-12 col-md-12 mb-4">
+                                    <div class="card border-left-warning shadow h-100 py-2">
+                                       <div class="card-body">
+                                          <div class="row no-gutters align-items-center">
+                                                <div class="col-8 ml-2 mt-3 mb-0">
+                                                   <figure><img src="images/img17.jpg" width="200px;" alt="#" class="rounded"/></figure>
+                                                </div>
+                                                <div class="col mr-4">
+                                                   <p>Vegetable Plate</p>
+                                                   <p style="margin-top:-10px;">£20.50</p>
+                                                   <a href="./cart_manager.php?id=';echo $item_url; echo'" class="book_btn mt-0 mb-5">Remove Item <i class="fa fa-trash"></i></a>
+                                                </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              ';
+                           }
+                        }
+                     ?>
                   </div>
                </div>
                <div class="col-xl-4 col-md-4 mb-4">
