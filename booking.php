@@ -145,8 +145,8 @@ if(!empty($_SESSION["cart_items"])){
                                                    <figure><img src="images/img10.jpg" width="200px;" alt="#" class="rounded"/></figure>
                                                 </div>
                                                 <div class="col mr-4">
-                                                   <p>Vegetable Plate</p>
-                                                   <p style="margin-top:-10px;">£20.50</p>
+                                                   <p>Vegan Salad Bowl</p>
+                                                   <p style="margin-top:-10px;">£15.75</p>
                                                    <a href="./cart_manager.php?id=';echo $item_url; echo'" class="book_btn mt-0 mb-5">Remove Item <i class="fa fa-trash"></i></a>
                                                 </div>
                                           </div>
@@ -168,8 +168,8 @@ if(!empty($_SESSION["cart_items"])){
                                                    <figure><img src="images/img11.jpg" width="200px;" alt="#" class="rounded"/></figure>
                                                 </div>
                                                 <div class="col mr-4">
-                                                   <p>Vegetable Plate</p>
-                                                   <p style="margin-top:-10px;">£20.50</p>
+                                                   <p>Cauliflower</p>
+                                                   <p style="margin-top:-10px;">£35.10</p>
                                                    <a href="./cart_manager.php?id=';echo $item_url; echo'" class="book_btn mt-0 mb-5">Remove Item <i class="fa fa-trash"></i></a>
                                                 </div>
                                           </div>
@@ -191,8 +191,8 @@ if(!empty($_SESSION["cart_items"])){
                                                    <figure><img src="images/img12.jpg" width="200px;" alt="#" class="rounded"/></figure>
                                                 </div>
                                                 <div class="col mr-4">
-                                                   <p>Vegetable Plate</p>
-                                                   <p style="margin-top:-10px;">£20.50</p>
+                                                   <p>Vegan Guacamole</p>
+                                                   <p style="margin-top:-10px;">£15.50</p>
                                                    <a href="./cart_manager.php?id=';echo $item_url; echo'" class="book_btn mt-0 mb-5">Remove Item <i class="fa fa-trash"></i></a>
                                                 </div>
                                           </div>
@@ -214,8 +214,8 @@ if(!empty($_SESSION["cart_items"])){
                                                    <figure><img src="images/img13.jpg" width="200px;" alt="#" class="rounded"/></figure>
                                                 </div>
                                                 <div class="col mr-4">
-                                                   <p>Vegetable Plate</p>
-                                                   <p style="margin-top:-10px;">£20.50</p>
+                                                   <p>Avacado Toast</p>
+                                                   <p style="margin-top:-10px;">£28.35</p>
                                                    <a href="./cart_manager.php?id=';echo $item_url; echo'" class="book_btn mt-0 mb-5">Remove Item <i class="fa fa-trash"></i></a>
                                                 </div>
                                           </div>
@@ -237,8 +237,8 @@ if(!empty($_SESSION["cart_items"])){
                                                    <figure><img src="images/img14.jpg" width="200px;" alt="#" class="rounded"/></figure>
                                                 </div>
                                                 <div class="col mr-4">
-                                                   <p>Vegetable Plate</p>
-                                                   <p style="margin-top:-10px;">£20.50</p>
+                                                   <p>VRoasted Vegetables</p>
+                                                   <p style="margin-top:-10px;">£24.50</p>
                                                    <a href="./cart_manager.php?id=';echo $item_url; echo'" class="book_btn mt-0 mb-5">Remove Item <i class="fa fa-trash"></i></a>
                                                 </div>
                                           </div>
@@ -260,8 +260,8 @@ if(!empty($_SESSION["cart_items"])){
                                                    <figure><img src="images/img15.jpg" width="200px;" alt="#" class="rounded"/></figure>
                                                 </div>
                                                 <div class="col mr-4">
-                                                   <p>Vegetable Plate</p>
-                                                   <p style="margin-top:-10px;">£20.50</p>
+                                                   <p>Vegan Veggie Bowl</p>
+                                                   <p style="margin-top:-10px;">£21.99</p>
                                                    <a href="./cart_manager.php?id=';echo $item_url; echo'" class="book_btn mt-0 mb-5">Remove Item <i class="fa fa-trash"></i></a>
                                                 </div>
                                           </div>
@@ -283,8 +283,8 @@ if(!empty($_SESSION["cart_items"])){
                                                    <figure><img src="images/img16.jpg" width="200px;" alt="#" class="rounded"/></figure>
                                                 </div>
                                                 <div class="col mr-4">
-                                                   <p>Vegetable Plate</p>
-                                                   <p style="margin-top:-10px;">£20.50</p>
+                                                   <p>Greek Salad</p>
+                                                   <p style="margin-top:-10px;">£27.00</p>
                                                    <a href="./cart_manager.php?id=';echo $item_url; echo'" class="book_btn mt-0 mb-5">Remove Item <i class="fa fa-trash"></i></a>
                                                 </div>
                                           </div>
@@ -306,8 +306,8 @@ if(!empty($_SESSION["cart_items"])){
                                                    <figure><img src="images/img17.jpg" width="200px;" alt="#" class="rounded"/></figure>
                                                 </div>
                                                 <div class="col mr-4">
-                                                   <p>Vegetable Plate</p>
-                                                   <p style="margin-top:-10px;">£20.50</p>
+                                                   <p>Porridge</p>
+                                                   <p style="margin-top:-10px;">£11.50</p>
                                                    <a href="./cart_manager.php?id=';echo $item_url; echo'" class="book_btn mt-0 mb-5">Remove Item <i class="fa fa-trash"></i></a>
                                                 </div>
                                           </div>
