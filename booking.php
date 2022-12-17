@@ -1,7 +1,7 @@
 <?php
 /*
-if(!empty($_COOKIE['myjavascriptVar'])){
-    echo $myphpVar = $_COOKIE['myjavascriptVar'];
+if(!empty($_COOKIE['getDate'])){
+    echo "<br/>".$myphpVar = $_COOKIE['getDate'];
 }
 */
 // start session
@@ -53,14 +53,9 @@ $item_names_7 = "Vegan Veggie Bowl";
 $item_names_8 = "Greek Salad";
 $item_names_9 = "Porridge";
 
-$sending_url = "&sending_url=booking.php";
 $cart_argument = "&cart_argument=REMOVE";
 
-// booking details
-date_default_timezone_set('Europe/London'); // Get the current datetime for London
-$get_form_date =  date("d/m/Y", strtotime('tomorrow'));
-$get_form_time = date("H:i");
-$get_form_person = "2";
+
 
 // put vegan dish cost into array
 $item_total_cost = array();
@@ -70,6 +65,22 @@ $VAT = "0.00";
 $total_including_VAT = "0.00";
 
 
+// get values from booking url
+if(!empty($_GET["date"]) && !empty($_GET["time"]) && !empty($_GET["person"])){
+   $get_form_date = $_GET["date"];
+   $get_form_time = $_GET["time"];
+   $get_form_person = $_GET["person"];
+}
+// set to default values
+else{
+   // booking details
+   date_default_timezone_set('Europe/London'); // Get the current datetime for London
+   $get_form_date =  date("Y-m-d", strtotime('tomorrow'));
+   $get_form_time = date("H:i");
+   $get_form_person = "2";
+}
+
+$sending_url = "&sending_url=booking.php&date=$get_form_date&time=$get_form_time&person=$get_form_person";
 
 // get cart item
 if(!empty($_SESSION["cart_items"])){
@@ -113,6 +124,9 @@ if(!empty($_SESSION["cart_items"])){
          $subtotal += $item_total_cost[$i];
       }
    }
+   // get subtotal according to the number of person booked for
+   $_SESSION["get_form_person"] = $get_form_person;
+   $subtotal = $get_form_person * $subtotal;
    // calculate VAT
    $VAT = ($subtotal * 20) / 100;
    // calculate Total including VAT
@@ -170,21 +184,6 @@ if(!empty($_SESSION["cart_items"])){
                      <div class="titlepage">
                         <h2><span class="text_norlam">Items In Your</span> Cart <i class='fa fa-shopping-cart' aria-hidden='true'></i>
                         </div></h2>
-                     </div>
-                     <br/>
-                     <div class="row">
-                        <div class="col-md-4">
-                           <label class="date"> DATE</label>
-                           <input class="book_n"  type="date" >
-                        </div>
-                        <div class="col-md-4">
-                           <label class="date">TIME</label>
-                           <input class="book_n"  type="time" >
-                        </div>
-                        <div class="col-md-4">
-                           <label class="date">PERSON</label>
-                           <input class="book_n" placeholder="2" type="type" name="2">
-                        </div>
                      </div>
                   </form>
                </div>
@@ -606,7 +605,7 @@ if(!empty($_SESSION["cart_items"])){
                               Subtotal
                            </div>
                            <div>
-                              <span id="setSubtotal">£<?php echo $subtotal;?></span>
+                              <span id="setSubTotal">£<?php echo $subtotal;?></span>
                            </div>
                         </div>
                         <p></p>
@@ -648,7 +647,7 @@ if(!empty($_SESSION["cart_items"])){
                                  return actions.order.create({
                                     purchase_units: [{
                                        amount: {
-                                       value: '<?php echo $total_including_VAT;?>' // Can also reference a variable or function
+                                       value: <?php echo $total_including_VAT;?> // Can also reference a variable or function
                                        }
                                     }]
                                  });
@@ -670,9 +669,6 @@ if(!empty($_SESSION["cart_items"])){
                                  });
                               }
                            }).render('#paypal-button-container');
-                           if(complete){
-                              fnRedirect();
-                           }
                         </script>
                      </div>
                   </div>
