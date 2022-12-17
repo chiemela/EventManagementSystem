@@ -1,8 +1,14 @@
 <?php
+/*
+if(!empty($_COOKIE['myjavascriptVar'])){
+    echo $myphpVar = $_COOKIE['myjavascriptVar'];
+}
+*/
 // start session
 session_start();
 $cart_items_count = 0;
 $first_name = "";
+// item ID
 $item_id_1 = "1";
 $item_id_2 = "2";
 $item_id_3 = "3";
@@ -12,6 +18,18 @@ $item_id_6 = "6";
 $item_id_7 = "7";
 $item_id_8 = "8";
 $item_id_9 = "9";
+
+// item cost
+$item_cost_1 = 20.50;
+$item_cost_2 = 15.75;
+$item_cost_3 = 35.10;
+$item_cost_4 = 15.50;
+$item_cost_5 = 28.35;
+$item_cost_6 = 24.50;
+$item_cost_7 = 21.99;
+$item_cost_8 = 27.00;
+$item_cost_9 = 11.50;
+
 $sending_url = "&sending_url=booking.php";
 $cart_argument = "&cart_argument=REMOVE";
 
@@ -123,7 +141,7 @@ if(!empty($_SESSION["cart_items"])){
                                                 </div>
                                                 <div class="col mr-4">
                                                    <p>Vegetable Plate</p>
-                                                   <p style="margin-top:-10px;">£20.50</p>
+                                                   <p style="margin-top:-10px;">£';echo $item_cost_1; echo'</p>
                                                    <a href="./cart_manager.php?id=';echo $item_url; echo'" class="book_btn mt-0 mb-5">Remove Item <i class="fa fa-trash"></i></a>
                                                 </div>
                                           </div>
