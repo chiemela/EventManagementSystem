@@ -67,17 +67,17 @@ $total_including_VAT = "0.00";
 
 // get values from booking url
 if(!empty($_GET["date"]) && !empty($_GET["time"]) && !empty($_GET["person"])){
-   $get_form_date = $_GET["date"];
-   $get_form_time = $_GET["time"];
-   $get_form_person = $_GET["person"];
+   $_SESSION["get_form_date"] = $get_form_date = $_GET["date"];
+   $_SESSION["get_form_time"] = $get_form_time = $_GET["time"];
+   $_SESSION["get_form_person"] = $get_form_person = $_GET["person"];
 }
 // set to default values
 else{
    // booking details
    date_default_timezone_set('Europe/London'); // Get the current datetime for London
-   $get_form_date =  date("Y-m-d", strtotime('tomorrow'));
-   $get_form_time = date("H:i");
-   $get_form_person = "2";
+   $_SESSION["get_form_date"] = $get_form_date =  date("Y-m-d", strtotime('tomorrow'));
+   $_SESSION["get_form_time"] = $get_form_time = date("H:i");
+   $_SESSION["get_form_person"] = $get_form_person = "2";
 }
 
 $sending_url = "&sending_url=booking.php&date=$get_form_date&time=$get_form_time&person=$get_form_person";
@@ -130,7 +130,7 @@ if(!empty($_SESSION["cart_items"])){
    // calculate VAT
    $VAT = ($subtotal * 20) / 100;
    // calculate Total including VAT
-   $total_including_VAT = $subtotal + $VAT;
+   $_SESSION["booking_cost"] = $total_including_VAT = $subtotal + $VAT;
 }
 ?>
 
@@ -659,7 +659,7 @@ if(!empty($_SESSION["cart_items"])){
                                     //console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
                                     const transaction = orderData.purchase_units[0].payments.captures[0];
                                     //alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
-                                    document.cookie = "myjavascriptVar = " + transaction.id;
+                                    document.cookie = "transaction_ref = " + transaction.id;
                                     fnRedirect();
                                     //fnRedirect();
                                     // When ready to go live, remove the alert and show a success message within this page. For example:

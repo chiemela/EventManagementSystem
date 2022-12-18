@@ -52,6 +52,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             session_start();      
                             // Store data in session variables
                             $_SESSION["loggedin"] = "YES";
+                            $_SESSION["id"] = $id;
+                            $_SESSION["email"] = $email;
                             $_SESSION["first_name"] = $first_name;
                             $_SESSION["logged_message"] = "Login Successful";
                             $URL_redirect = "../services.php";

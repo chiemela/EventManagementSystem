@@ -6,7 +6,6 @@ if(!empty($_COOKIE['getDate'])){
 */
 // start session
 session_start();
-
 try {
    if($_SERVER["REQUEST_METHOD"] == "POST"){
       if(!empty($_POST["date"]) && !empty($_POST["time"]) && !empty($_POST["person"])){

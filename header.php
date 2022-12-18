@@ -1,4 +1,7 @@
 <?php
+if(empty($cart_items_count)){
+    $cart_items_count = 0;
+}
 if ($page === "INDEX") {
     echo '
         <header>
