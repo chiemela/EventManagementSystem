@@ -10,7 +10,6 @@ if($_SESSION["role"] == "Admin"){
 }
 include "./api/getUsers.php";
 $users = get_users();
-echo "<br>your address: ".$address = $users[0]["email"];
 ?>
 
 <?php
@@ -48,110 +47,53 @@ echo "<br>your address: ".$address = $users[0]["email"];
           <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">
               <thead>
-              <tr>
-                <th>Rendering engine</th>
-                <th>Browser</th>
-                <th>Platform(s)</th>
-                <th>Engine version</th>
-                <th>CSS grade</th>
-              </tr>
+                <tr>
+                  <th>S/N</th>
+                  <th>User ID</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Address</th>
+                  <th>Location</th>
+                  <th>Reg Date</th>
+                </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>Trident</td>
-                <td>Internet
-                  Explorer 4.0
-                </td>
-                <td>Win 95+</td>
-                <td> 4</td>
-                <td>X</td>
-              </tr>
-              <tr>
-                <td>Trident</td>
-                <td>Internet
-                  Explorer 5.0
-                </td>
-                <td>Win 95+</td>
-                <td>5</td>
-                <td>C</td>
-              </tr>
-              <tr>
-                <td>Trident</td>
-                <td>Internet
-                  Explorer 5.5
-                </td>
-                <td>Win 95+</td>
-                <td>5.5</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Trident</td>
-                <td>Internet
-                  Explorer 6
-                </td>
-                <td>Win 98+</td>
-                <td>6</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Trident</td>
-                <td>Internet Explorer 7</td>
-                <td>Win XP SP2+</td>
-                <td>7</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Trident</td>
-                <td>AOL browser (AOL desktop)</td>
-                <td>Win XP</td>
-                <td>6</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Firefox 1.0</td>
-                <td>Win 98+ / OSX.2+</td>
-                <td>1.7</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Firefox 1.5</td>
-                <td>Win 98+ / OSX.2+</td>
-                <td>1.8</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Firefox 2.0</td>
-                <td>Win 98+ / OSX.2+</td>
-                <td>1.8</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Firefox 3.0</td>
-                <td>Win 2k+ / OSX.3+</td>
-                <td>1.9</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Camino 1.0</td>
-                <td>OSX.2+</td>
-                <td>1.8</td>
-                <td>A</td>
-              </tr>
-              
+                <?php
+                  $i = 0;
+                  $serial_number = 1;
+                  while ($i < count($users)) {
+                    echo '
+                      <tr>
+                        <td>'.$serial_number.'</td>
+                        <td>'.$users[$i]['id'].'</td>
+                        <td>'.$users[$i]['first_name'].'</td>
+                        <td>'.$users[$i]['last_name'].'</td>
+                        <td>'.$users[$i]['phone'].'</td>
+                        <td>'.$users[$i]['email'].'</td>
+                        <td>'.$users[$i]['address'].'</td>
+                        <td>'.$users[$i]['location'].'</td>
+                        <td>'.$users[$i]['creation_date'].'</td>
+                      </tr>
+                    ';
+                    $i++;
+                    $serial_number++;
+                  }
+                ?>
               </tbody>
               <tfoot>
-              <tr>
-                <th>Rendering engine</th>
-                <th>Browser</th>
-                <th>Platform(s)</th>
-                <th>Engine version</th>
-                <th>CSS grade</th>
-              </tr>
+                <tr>
+                  <th>S/N</th>
+                  <th>User ID</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Address</th>
+                  <th>Location</th>
+                  <th>Reg Date</th>
+                </tr>
               </tfoot>
             </table>
           </div><!-- /.card-body -->
