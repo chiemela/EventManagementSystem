@@ -30,7 +30,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($password_err) || empty($email_err) ){
         // Prepare a select statement
-        $sql = "SELECT id, email, first_name, password FROM users WHERE email = ?";
+        $sql = "SELECT id, email, first_name, role, password FROM users WHERE email = ?";
         
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
@@ -46,7 +46,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // Check if email exists, if yes then verify password
                 if(mysqli_stmt_num_rows($stmt) == 1){                    
                     // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $id, $email, $first_name, $hashed_password);
+                    mysqli_stmt_bind_result($stmt, $id, $email, $first_name, $role, $hashed_password);
                     if(mysqli_stmt_fetch($stmt)){
                         if(password_verify($password, $hashed_password)){                   
                             session_start();      
@@ -56,7 +56,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["email"] = $email;
                             $_SESSION["first_name"] = $first_name;
                             $_SESSION["logged_message"] = "Login Successful";
-                            $URL_redirect = "../services.php";
+                            if(empty($role)){
+                                $URL_redirect = "../services.php";
+                            }else{
+                                $_SESSION["role"] = $role;
+                                $URL_redirect = "../admin";
+                            }
                             
                             // Redirect user to welcome page
                             header("location: ".$URL_redirect);
