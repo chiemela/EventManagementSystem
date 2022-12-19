@@ -6,52 +6,11 @@ if(!empty($_COOKIE['getDate'])){
 */
 // start session
 session_start();
+// Include config file
+require_once "./config.php";
 $cart_items_count = 0;
 $first_name = "";
 
-// item ID
-$item_id_1 = "1";
-$item_id_2 = "2";
-$item_id_3 = "3";
-$item_id_4 = "4";
-$item_id_5 = "5";
-$item_id_6 = "6";
-$item_id_7 = "7";
-$item_id_8 = "8";
-$item_id_9 = "9";
-
-// item cost
-$item_cost_1 = "20.50";
-$item_cost_2 = "15.75";
-$item_cost_3 = "35.10";
-$item_cost_4 = "15.50";
-$item_cost_5 = "28.35";
-$item_cost_6 = "24.50";
-$item_cost_7 = "21.99";
-$item_cost_8 = "27.00";
-$item_cost_9 = "11.50";
-
-// item images
-$item_images_9 = "img9.jpg";
-$item_images_10 = "img10.jpg";
-$item_images_11 = "img11.jpg";
-$item_images_12 = "img12.jpg";
-$item_images_13 = "img13.jpg";
-$item_images_14 = "img14.jpg";
-$item_images_15 = "img15.jpg";
-$item_images_16 = "img16.jpg";
-$item_images_17 = "img17.jpg";
-
-// item names
-$item_names_1 = "Vegetable Plate";
-$item_names_2 = "Vegan Salad Bowl";
-$item_names_3 = "Cauliflower";
-$item_names_4 = "Vegan Guacamole";
-$item_names_5 = "Avacado Toast";
-$item_names_6 = "Roasted Vegetables";
-$item_names_7 = "Vegan Veggie Bowl";
-$item_names_8 = "Greek Salad";
-$item_names_9 = "Porridge";
 
 $cart_argument = "&cart_argument=REMOVE";
 
@@ -60,9 +19,9 @@ $cart_argument = "&cart_argument=REMOVE";
 // put vegan dish cost into array
 $item_total_cost = array();
 
-$subtotal = "0.00";
-$VAT = "0.00";
-$total_including_VAT = "0.00";
+$subtotal = 0.00;
+$VAT = 0.00;
+$total_including_VAT = 0.00;
 
 
 // get values from booking url
@@ -88,34 +47,15 @@ if(!empty($_SESSION["cart_items"])){
    $cart_items = explode(",", $cart_items);
    array_pop($cart_items);
    $cart_items_count = count($cart_items);
+   
 
-   // add prices to the array
-   if(strpos($_SESSION["cart_items"], "1") !== false){
-      $item_total_cost[] = $item_cost_1;
-   }
-   if(strpos($_SESSION["cart_items"], "2") !== false){
-      $item_total_cost[] = $item_cost_2;
-   }
-   if(strpos($_SESSION["cart_items"], "3") !== false){
-      $item_total_cost[] = $item_cost_3;
-   }
-   if(strpos($_SESSION["cart_items"], "4") !== false){
-      $item_total_cost[] = $item_cost_4;
-   }
-   if(strpos($_SESSION["cart_items"], "5") !== false){
-      $item_total_cost[] = $item_cost_5;
-   }
-   if(strpos($_SESSION["cart_items"], "6") !== false){
-      $item_total_cost[] = $item_cost_6;
-   }
-   if(strpos($_SESSION["cart_items"], "7") !== false){
-      $item_total_cost[] = $item_cost_7;
-   }
-   if(strpos($_SESSION["cart_items"], "8") !== false){
-      $item_total_cost[] = $item_cost_8;
-   }
-   if(strpos($_SESSION["cart_items"], "9") !== false){
-      $item_total_cost[] = $item_cost_9;
+   // get all services
+   include "./admin/api/getServices.php";
+
+   for($i = 0; $i < $cart_items_count; $i++){
+      // get the cost for meal by their $id
+      $services_where = get_services_where($cart_items[$i]);
+      $item_total_cost[] = $services_where[0]['service_cost'];
    }
 
    // calculate the subtotal
@@ -124,7 +64,7 @@ if(!empty($_SESSION["cart_items"])){
          $subtotal += $item_total_cost[$i];
       }
    }
-   // get subtotal according to the number of person booked for
+   // get subtotal according to the number of person booked for.
    $_SESSION["get_form_person"] = $get_form_person;
    $subtotal = $get_form_person * $subtotal;
    // calculate VAT
@@ -201,9 +141,14 @@ if(!empty($_SESSION["cart_items"])){
                         // check if the cart items are empty
                         if(!empty($_SESSION["cart_items"])){
                            // check if selected item is already in the cart
-                           $item_id = "1";
-                           if(strpos($_SESSION["cart_items"], $item_id) !== false){
-                              $item_url = $item_id_1.$cart_argument.$sending_url;
+                           for($i = 0; $i < $cart_items_count; $i++){
+                              // get the cost for meal by their $id
+                              $services_where = get_services_where($cart_items[$i]);
+                              $service_id = $services_where[0]['service_id'];
+                              $service_name = $services_where[0]['service_name'];
+                              $service_cost = $services_where[0]['service_cost'];
+                              $image = $services_where[0]['image'];
+                              $item_url = $service_id.$cart_argument.$sending_url;
                               echo '
                                  <!-- Booking page Card  -->
                                  <div class="col-xl-12 col-md-12 mb-4">
@@ -211,195 +156,11 @@ if(!empty($_SESSION["cart_items"])){
                                        <div class="card-body">
                                           <div class="row no-gutters align-items-center">
                                                 <div class="col-8 ml-2 mt-3 mb-0">
-                                                   <figure><img src="images/';echo $item_images_9; echo'" width="200px;" alt="#" class="rounded"/></figure>
+                                                   <figure><img src="images/';echo $image; echo'" width="200px;" alt="#" class="rounded"/></figure>
                                                 </div>
                                                 <div class="col mr-4">
-                                                   <p>';echo $item_names_1; echo'</p>
-                                                   <p style="margin-top:-10px;">£';echo $item_cost_1; echo'</p>
-                                                   <a href="./cart_manager.php?id=';echo $item_url; echo'" class="book_btn mt-0 mb-5">Remove Item <i class="fa fa-trash"></i></a>
-                                                </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              ';
-                           }
-                           $item_id = "2";
-                           if(strpos($_SESSION["cart_items"], $item_id) !== false){
-                              $item_url = $item_id_2.$cart_argument.$sending_url;
-                              echo '
-                                 <!-- Booking page Card  -->
-                                 <div class="col-xl-12 col-md-12 mb-4">
-                                    <div class="card border-left-warning shadow h-100 py-2">
-                                       <div class="card-body">
-                                          <div class="row no-gutters align-items-center">
-                                                <div class="col-8 ml-2 mt-3 mb-0">
-                                                   <figure><img src="images/';echo $item_images_10; echo'" width="200px;" alt="#" class="rounded"/></figure>
-                                                </div>
-                                                <div class="col mr-4">
-                                                   <p>';echo $item_names_2; echo'</p>
-                                                   <p style="margin-top:-10px;">£';echo $item_cost_2; echo'</p>
-                                                   <a href="./cart_manager.php?id=';echo $item_url; echo'" class="book_btn mt-0 mb-5">Remove Item <i class="fa fa-trash"></i></a>
-                                                </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              ';
-                           }
-                           $item_id = "3";
-                           if(strpos($_SESSION["cart_items"], $item_id) !== false){
-                              $item_url = $item_id_3.$cart_argument.$sending_url;
-                              echo '
-                                 <!-- Booking page Card  -->
-                                 <div class="col-xl-12 col-md-12 mb-4">
-                                    <div class="card border-left-warning shadow h-100 py-2">
-                                       <div class="card-body">
-                                          <div class="row no-gutters align-items-center">
-                                                <div class="col-8 ml-2 mt-3 mb-0">
-                                                   <figure><img src="images/';echo $item_images_11; echo'" width="200px;" alt="#" class="rounded"/></figure>
-                                                </div>
-                                                <div class="col mr-4">
-                                                   <p>';echo $item_names_3; echo'</p>
-                                                   <p style="margin-top:-10px;">£';echo $item_cost_3; echo'</p>
-                                                   <a href="./cart_manager.php?id=';echo $item_url; echo'" class="book_btn mt-0 mb-5">Remove Item <i class="fa fa-trash"></i></a>
-                                                </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              ';
-                           }
-                           $item_id = "4";
-                           if(strpos($_SESSION["cart_items"], $item_id) !== false){
-                              $item_url = $item_id_4.$cart_argument.$sending_url;
-                              echo '
-                                 <!-- Booking page Card  -->
-                                 <div class="col-xl-12 col-md-12 mb-4">
-                                    <div class="card border-left-warning shadow h-100 py-2">
-                                       <div class="card-body">
-                                          <div class="row no-gutters align-items-center">
-                                                <div class="col-8 ml-2 mt-3 mb-0">
-                                                   <figure><img src="images/';echo $item_images_12; echo'" width="200px;" alt="#" class="rounded"/></figure>
-                                                </div>
-                                                <div class="col mr-4">
-                                                   <p>';echo $item_names_4; echo'</p>
-                                                   <p style="margin-top:-10px;">£';echo $item_cost_4; echo'</p>
-                                                   <a href="./cart_manager.php?id=';echo $item_url; echo'" class="book_btn mt-0 mb-5">Remove Item <i class="fa fa-trash"></i></a>
-                                                </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              ';
-                           }
-                           $item_id = "5";
-                           if(strpos($_SESSION["cart_items"], $item_id) !== false){
-                              $item_url = $item_id_5.$cart_argument.$sending_url;
-                              echo '
-                                 <!-- Booking page Card  -->
-                                 <div class="col-xl-12 col-md-12 mb-4">
-                                    <div class="card border-left-warning shadow h-100 py-2">
-                                       <div class="card-body">
-                                          <div class="row no-gutters align-items-center">
-                                                <div class="col-8 ml-2 mt-3 mb-0">
-                                                   <figure><img src="images/';echo $item_images_13; echo'" width="200px;" alt="#" class="rounded"/></figure>
-                                                </div>
-                                                <div class="col mr-4">
-                                                   <p>';echo $item_names_5; echo'</p>
-                                                   <p style="margin-top:-10px;">£';echo $item_cost_5; echo'</p>
-                                                   <a href="./cart_manager.php?id=';echo $item_url; echo'" class="book_btn mt-0 mb-5">Remove Item <i class="fa fa-trash"></i></a>
-                                                </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              ';
-                           }
-                           $item_id = "6";
-                           if(strpos($_SESSION["cart_items"], $item_id) !== false){
-                              $item_url = $item_id_6.$cart_argument.$sending_url;
-                              echo '
-                                 <!-- Booking page Card  -->
-                                 <div class="col-xl-12 col-md-12 mb-4">
-                                    <div class="card border-left-warning shadow h-100 py-2">
-                                       <div class="card-body">
-                                          <div class="row no-gutters align-items-center">
-                                                <div class="col-8 ml-2 mt-3 mb-0">
-                                                   <figure><img src="images/';echo $item_images_14; echo'" width="200px;" alt="#" class="rounded"/></figure>
-                                                </div>
-                                                <div class="col mr-4">
-                                                   <p>';echo $item_names_6; echo'</p>
-                                                   <p style="margin-top:-10px;">£';echo $item_cost_6; echo'</p>
-                                                   <a href="./cart_manager.php?id=';echo $item_url; echo'" class="book_btn mt-0 mb-5">Remove Item <i class="fa fa-trash"></i></a>
-                                                </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              ';
-                           }
-                           $item_id = "7";
-                           if(strpos($_SESSION["cart_items"], $item_id) !== false){
-                              $item_url = $item_id_7.$cart_argument.$sending_url;
-                              echo '
-                                 <!-- Booking page Card  -->
-                                 <div class="col-xl-12 col-md-12 mb-4">
-                                    <div class="card border-left-warning shadow h-100 py-2">
-                                       <div class="card-body">
-                                          <div class="row no-gutters align-items-center">
-                                                <div class="col-8 ml-2 mt-3 mb-0">
-                                                   <figure><img src="images/';echo $item_images_15; echo'" width="200px;" alt="#" class="rounded"/></figure>
-                                                </div>
-                                                <div class="col mr-4">
-                                                   <p>';echo $item_names_7; echo'</p>
-                                                   <p style="margin-top:-10px;">£';echo $item_cost_7; echo'</p>
-                                                   <a href="./cart_manager.php?id=';echo $item_url; echo'" class="book_btn mt-0 mb-5">Remove Item <i class="fa fa-trash"></i></a>
-                                                </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              ';
-                           }
-                           $item_id = "8";
-                           if(strpos($_SESSION["cart_items"], $item_id) !== false){
-                              $item_url = $item_id_8.$cart_argument.$sending_url;
-                              echo '
-                                 <!-- Booking page Card  -->
-                                 <div class="col-xl-12 col-md-12 mb-4">
-                                    <div class="card border-left-warning shadow h-100 py-2">
-                                       <div class="card-body">
-                                          <div class="row no-gutters align-items-center">
-                                                <div class="col-8 ml-2 mt-3 mb-0">
-                                                   <figure><img src="images/';echo $item_images_16; echo'" width="200px;" alt="#" class="rounded"/></figure>
-                                                </div>
-                                                <div class="col mr-4">
-                                                   <p>';echo $item_names_8; echo'</p>
-                                                   <p style="margin-top:-10px;">£';echo $item_cost_8; echo'</p>
-                                                   <a href="./cart_manager.php?id=';echo $item_url; echo'" class="book_btn mt-0 mb-5">Remove Item <i class="fa fa-trash"></i></a>
-                                                </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              ';
-                           }
-                           $item_id = "9";
-                           if(strpos($_SESSION["cart_items"], $item_id) !== false){
-                              $item_url = $item_id_9.$cart_argument.$sending_url;
-                              echo '
-                                 <!-- Booking page Card  -->
-                                 <div class="col-xl-12 col-md-12 mb-4">
-                                    <div class="card border-left-warning shadow h-100 py-2">
-                                       <div class="card-body">
-                                          <div class="row no-gutters align-items-center">
-                                                <div class="col-8 ml-2 mt-3 mb-0">
-                                                   <figure><img src="images/';echo $item_images_17; echo'" width="200px;" alt="#" class="rounded"/></figure>
-                                                </div>
-                                                <div class="col mr-4">
-                                                   <p>';echo $item_names_9; echo'</p>
-                                                   <p style="margin-top:-10px;">£';echo $item_cost_9; echo'</p>
+                                                   <p>';echo $service_name; echo'</p>
+                                                   <p style="margin-top:-10px;">£';echo $service_cost; echo'</p>
                                                    <a href="./cart_manager.php?id=';echo $item_url; echo'" class="book_btn mt-0 mb-5">Remove Item <i class="fa fa-trash"></i></a>
                                                 </div>
                                           </div>
@@ -473,133 +234,29 @@ if(!empty($_SESSION["cart_items"])){
                            }
                         ?>
                         <?php
-                        $item_id = "1";
-                        if(!empty($_SESSION["cart_items"]) && strpos($_SESSION["cart_items"], $item_id) !== false){
-                           echo '
-                              <div class="d-flex justify-content-between">
-                                 <div>
-                                    ';echo $item_names_1; echo'
+                           // check if selected item is already in the cart
+                           for($i = 0; $i < $cart_items_count; $i++){
+                              // get the cost for meal by their $id
+                              $services_where = get_services_where($cart_items[$i]);
+                              $service_id = $services_where[0]['service_id'];
+                              $service_name = $services_where[0]['service_name'];
+                              $service_cost = $services_where[0]['service_cost'];
+                              $image = $services_where[0]['image'];
+                              $item_url = $service_id.$cart_argument.$sending_url;
+                              echo '
+                                 <div class="d-flex justify-content-between">
+                                    <div>
+                                       ';echo $service_name; echo'
+                                    </div>
+                                    <div>
+                                       £';echo $service_cost; echo'
+                                    </div>
                                  </div>
-                                 <div>
-                                    £';echo $item_cost_1; echo'
-                                 </div>
-                              </div>
-                              <p></p>
-                           ';
-                        }
-                        $item_id = "2";
-                        if(!empty($_SESSION["cart_items"]) && strpos($_SESSION["cart_items"], $item_id) !== false){
-                           echo '
-                              <div class="d-flex justify-content-between">
-                                 <div>
-                                    ';echo $item_names_2; echo'
-                                 </div>
-                                 <div>
-                                    £';echo $item_cost_2; echo'
-                                 </div>
-                              </div>
-                              <p></p>
-                           ';
-                        }
-                        $item_id = "3";
-                        if(!empty($_SESSION["cart_items"]) && strpos($_SESSION["cart_items"], $item_id) !== false){
-                           echo '
-                              <div class="d-flex justify-content-between">
-                                 <div>
-                                    ';echo $item_names_3; echo'
-                                 </div>
-                                 <div>
-                                    £';echo $item_cost_3; echo'
-                                 </div>
-                              </div>
-                              <p></p>
-                           ';
-                        }
-                        $item_id = "4";
-                        if(!empty($_SESSION["cart_items"]) && strpos($_SESSION["cart_items"], $item_id) !== false){
-                           echo '
-                              <div class="d-flex justify-content-between">
-                                 <div>
-                                    ';echo $item_names_4; echo'
-                                 </div>
-                                 <div>
-                                    £';echo $item_cost_4; echo'
-                                 </div>
-                              </div>
-                              <p></p>
-                           ';
-                        }
-                        $item_id = "5";
-                        if(!empty($_SESSION["cart_items"]) && strpos($_SESSION["cart_items"], $item_id) !== false){
-                           echo '
-                              <div class="d-flex justify-content-between">
-                                 <div>
-                                    ';echo $item_names_5; echo'
-                                 </div>
-                                 <div>
-                                    £';echo $item_cost_5; echo'
-                                 </div>
-                              </div>
-                              <p></p>
-                           ';
-                        }
-                        $item_id = "6";
-                        if(!empty($_SESSION["cart_items"]) && strpos($_SESSION["cart_items"], $item_id) !== false){
-                           echo '
-                              <div class="d-flex justify-content-between">
-                                 <div>
-                                    ';echo $item_names_6; echo'
-                                 </div>
-                                 <div>
-                                    £';echo $item_cost_6; echo'
-                                 </div>
-                              </div>
-                              <p></p>
-                           ';
-                        }
-                        $item_id = "7";
-                        if(!empty($_SESSION["cart_items"]) && strpos($_SESSION["cart_items"], $item_id) !== false){
-                           echo '
-                              <div class="d-flex justify-content-between">
-                                 <div>
-                                    ';echo $item_names_7; echo'
-                                 </div>
-                                 <div>
-                                    £';echo $item_cost_7; echo'
-                                 </div>
-                              </div>
-                              <p></p>
-                           ';
-                        }
-                        $item_id = "8";
-                        if(!empty($_SESSION["cart_items"]) && strpos($_SESSION["cart_items"], $item_id) !== false){
-                           echo '
-                              <div class="d-flex justify-content-between">
-                                 <div>
-                                    ';echo $item_names_8; echo'
-                                 </div>
-                                 <div>
-                                    £';echo $item_cost_8; echo'
-                                 </div>
-                              </div>
-                              <p></p>
-                           ';
-                        }
-                        $item_id = "9";
-                        if(!empty($_SESSION["cart_items"]) && strpos($_SESSION["cart_items"], $item_id) !== false){
-                           echo '
-                              <div class="d-flex justify-content-between">
-                                 <div>
-                                    ';echo $item_names_9; echo'
-                                 </div>
-                                 <div>
-                                    £';echo $item_cost_9; echo'
-                                 </div>
-                              </div>
-                              <p></p>
-                           ';
-                        }
-                        ?><hr/><p></p>
+                                 <p></p>
+                              ';
+                           }
+                        ?>
+                        <hr/><p></p>
                         <div class="d-flex justify-content-between">
                            <div>
                               Subtotal
