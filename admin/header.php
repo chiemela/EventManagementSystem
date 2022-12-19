@@ -55,7 +55,7 @@
     <ul class="navbar-nav ml-auto">
       <!-- Navbar Search -->
       <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">Hi, <?php echo $first_name;?>!&nbsp;&nbsp;&nbsp;&nbsp;LOGOUT 
+        <a class="nav-link" href="../logout.php" >Hi, <?php echo $first_name;?>!&nbsp;&nbsp;&nbsp;&nbsp;LOGOUT 
           <i class="fas fa-sign-out-alt"></i>
         </a>
       </li>

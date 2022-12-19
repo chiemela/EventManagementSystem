@@ -8,6 +8,7 @@ if($_SESSION["role"] == "Admin"){
     $first_name = $_SESSION["first_name"];
     $email = $_SESSION["email"];
 }
+
 include "./api/getUsers.php";
 $users = get_users();
 ?>
@@ -61,24 +62,26 @@ $users = get_users();
               </thead>
               <tbody>
                 <?php
-                  $i = 0;
-                  $serial_number = 1;
-                  while ($i < count($users)) {
-                    echo '
-                      <tr>
-                        <td>'.$serial_number.'</td>
-                        <td>'.$users[$i]['id'].'</td>
-                        <td>'.$users[$i]['first_name'].'</td>
-                        <td>'.$users[$i]['last_name'].'</td>
-                        <td>'.$users[$i]['phone'].'</td>
-                        <td>'.$users[$i]['email'].'</td>
-                        <td>'.$users[$i]['address'].'</td>
-                        <td>'.$users[$i]['location'].'</td>
-                        <td>'.$users[$i]['creation_date'].'</td>
-                      </tr>
-                    ';
-                    $i++;
-                    $serial_number++;
+                  if ($users !== true) {
+                    $i = 0;
+                    $serial_number = 1;
+                    while ($i < count($users)) {
+                      echo '
+                        <tr>
+                          <td>'.$serial_number.'</td>
+                          <td>'.$users[$i]['id'].'</td>
+                          <td>'.$users[$i]['first_name'].'</td>
+                          <td>'.$users[$i]['last_name'].'</td>
+                          <td>'.$users[$i]['phone'].'</td>
+                          <td>'.$users[$i]['email'].'</td>
+                          <td>'.$users[$i]['address'].'</td>
+                          <td>'.$users[$i]['location'].'</td>
+                          <td>'.$users[$i]['creation_date'].'</td>
+                        </tr>
+                      ';
+                      $i++;
+                      $serial_number++;
+                    }
                   }
                 ?>
               </tbody>

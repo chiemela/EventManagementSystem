@@ -60,7 +60,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 $URL_redirect = "../services.php";
                             }else{
                                 $_SESSION["role"] = $role;
-                                $URL_redirect = "../admin";
+                                $URL_redirect = "../admin/index.php";
                             }
                             
                             // Redirect user to welcome page
@@ -89,6 +89,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 } catch (Exception $e) {
     // do nothing
 }
+if(!empty($_SESSION["registration_success_messge"])){
+    $sign_up_message = $_SESSION["registration_success_messge"];
+    $_SESSION["registration_success_messge"] = "";
+}
 ?>
 
 
@@ -115,6 +119,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <!-- end header -->
     <div class="main">
 
+        <p class="text-center" style="color: #2EBB0B;">
+            <?php 
+                if(!empty($sign_up_message)){
+                    echo $sign_up_message;
+                }
+            ?>
+        </p>
         <!-- Sing in  Form -->
         <section class="sign-in">
             <div class="container">

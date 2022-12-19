@@ -30,51 +30,26 @@
  *   ?>
  *   </tbody>
  */
-function update_services($var1, $var2, $var3, $var4, $var5, $var6) {
+function delete_services($var1) {
 
     try {
 
-
         global $link;
-        
-        $service_name = $var1;
-        $service_cost = $var2;
-        $image = $var3;
-        $service_availability_status = $var4;
-        $service_last_updated_datetime = $var5;
-        $id = $var6;
-        $post_error = true;
     
-        if(!empty($var1) && !empty($var2) && !empty($var3) && !empty($var4) && !empty($var5)){
+        if(!empty($var1)){
             
-            // Attempt update query execution for TABLE
-            $sql = "UPDATE service SET service_name = '$var1', service_cost = '$var2', image = '$var3', service_availability_status = '$var4', service_last_updated_datetime = '$var5' WHERE service_id = '$var6'";
-    
-            if (mysqli_query($link, $sql)) {
-    
+            // Attempt delete query execution
+            $sql = "DELETE FROM service WHERE service_id = '$var1'";
+            if(mysqli_query($link, $sql)){
                 // Redirect user to welcome page
                 $URL_redirect = "./manage_services.php?res=OK";
                 header("location: ".$URL_redirect);
-    
-            } else {
-    
-                echo $_SESSION["updateServices_error"] = "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-    
+            } else{
+                $_SESSION["service_delete_error"] = "ERROR: Could not able to execute $sql. " . mysqli_error($link);
                 // Redirect user to welcome page
-                $URL_redirect = "./manage_services.php?res=ERROR";
+                $URL_redirect = "./manage_services.php?res=OK";
                 header("location: ".$URL_redirect);
-    
             }
-    
-        } else {
-    
-            // Destroying session
-            echo $_SESSION["updateServices_error"] = "Form field is empty!";
-    
-            // Redirect user to welcome page
-            $URL_redirect = "./manage_services.php?res=EMPTY";
-            header("location: ".$URL_redirect);
-    
         }
 
     } catch (\Throwable $th) {

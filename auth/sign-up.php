@@ -121,7 +121,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
-                $_SESSION["loggedin"] = "YES";
                 // send confirmation email
                 date_default_timezone_set("Europe/London");
                 $today = date("F j, Y, g:i a")." local time"; // format is March 10, 2001, 5:16 pm
@@ -172,18 +171,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $headers = ['From' => $fromEmail, 'Reply-To' => $fromEmail, 'Content-type' => 'text/html; charset=iso-8859-1'];
                 $bodyParagraphs = ["Name: {$name}", "Email: {$fromEmail}", "Message:", $message_body];
                 $body = join(PHP_EOL, $bodyParagraphs);
-                $URL_redirect = "../services.php";
-                $_SESSION["first_name"] = $first_name;
+                $URL_redirect = "./sign-in.php";
+                $_SESSION["registration_success_messge"] = "Registration Successful. Please Sign in.";
                 // Redirect to service page
                 header("location: $URL_redirect");
-                /*
-                if (mail($toEmail, $emailSubject, $body, $headers)) {
-                    $URL_redirect = "../services.php";
-                    $_SESSION["first_name"] = $first_name;
-                    // Redirect to service page
-                    header("location: $URL_redirect");
-                }
-                */
             } else{
                 echo "Something went wrong. Please try again later. $sql. " . mysqli_error($link);
             }

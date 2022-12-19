@@ -8,6 +8,22 @@ if($_SESSION["role"] == "Admin"){
     $first_name = $_SESSION["first_name"];
 }
 
+if(!empty($_GET["res"])){
+    $res = $_GET["res"];
+    if($res == "OK"){
+      $res = $_SESSION["success_messge"];
+    }
+    elseif($res == "ERROR"){
+      $res = $_SESSION["post_error"];
+    }
+    elseif($res == "EMPTY"){
+      $res = $_SESSION["post_error"];
+    }
+}
+
+include "./api/getServices.php";
+$services = get_services();
+
 ?>
 
 <?php
@@ -24,10 +40,11 @@ if($_SESSION["role"] == "Admin"){
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
+          <div class="col-sm-10">
             <h1 class="m-0">Manage Services</h1>
           </div><!-- /.col -->
-          <div class="col-sm-6">
+          <div class="col-sm-2">
+            <a href="manage_services_add.php" class="btn btn-block bg-gradient-primary"><i class="fa fa-plus"></i> Add New</a>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -36,6 +53,15 @@ if($_SESSION["role"] == "Admin"){
 
     <!-- Main content -->
     <section class="content">
+      <?php 
+          if(!empty($res)){
+              echo '
+                  <p class="text-center" style="color: grey;">';
+                      $res; echo'
+                  </p>
+              ';
+          }
+      ?>
       <div class="container-fluid">
         <div class="card">
           <div class="card-header">
@@ -46,108 +72,47 @@ if($_SESSION["role"] == "Admin"){
             <table id="example1" class="table table-bordered table-striped">
               <thead>
               <tr>
-                <th>Rendering engine</th>
-                <th>Browser</th>
-                <th>Platform(s)</th>
-                <th>Engine version</th>
-                <th>CSS grade</th>
+                <th>S/N</th>
+                <th>Name</th>
+                <th>Cost</th>
+                <th>Image</th>
+                <th>Status</th>
+                <th>Actions</th>
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>Trident</td>
-                <td>Internet
-                  Explorer 4.0
-                </td>
-                <td>Win 95+</td>
-                <td> 4</td>
-                <td>X</td>
-              </tr>
-              <tr>
-                <td>Trident</td>
-                <td>Internet
-                  Explorer 5.0
-                </td>
-                <td>Win 95+</td>
-                <td>5</td>
-                <td>C</td>
-              </tr>
-              <tr>
-                <td>Trident</td>
-                <td>Internet
-                  Explorer 5.5
-                </td>
-                <td>Win 95+</td>
-                <td>5.5</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Trident</td>
-                <td>Internet
-                  Explorer 6
-                </td>
-                <td>Win 98+</td>
-                <td>6</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Trident</td>
-                <td>Internet Explorer 7</td>
-                <td>Win XP SP2+</td>
-                <td>7</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Trident</td>
-                <td>AOL browser (AOL desktop)</td>
-                <td>Win XP</td>
-                <td>6</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Firefox 1.0</td>
-                <td>Win 98+ / OSX.2+</td>
-                <td>1.7</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Firefox 1.5</td>
-                <td>Win 98+ / OSX.2+</td>
-                <td>1.8</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Firefox 2.0</td>
-                <td>Win 98+ / OSX.2+</td>
-                <td>1.8</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Firefox 3.0</td>
-                <td>Win 2k+ / OSX.3+</td>
-                <td>1.9</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Camino 1.0</td>
-                <td>OSX.2+</td>
-                <td>1.8</td>
-                <td>A</td>
-              </tr>
-              
+                <?php
+                  if ($services !== true) {
+                    $i = 0;
+                    $serial_number = 1;
+                    while ($i < count($services)) {
+                      $item_id = $services[$i]['service_id'];
+                      $service_id_url = "manage_services_update.php?id=$item_id";
+                      $delete_url = "manage_services_delete.php?id=$item_id";
+                      echo '
+                        <tr>
+                          <td>'.$serial_number.'</td>
+                          <td>'.$services[$i]['service_name'].'</td>
+                          <td>£'.$services[$i]['service_cost'].'</td>
+                          <td><img src="../images/'.$services[$i]['image'].'"width="100px;"></td>
+                          <td>'.$services[$i]['service_availability_status'].'</td>
+                          <td><a href="'.$service_id_url.'" title="Edit meal"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="'.$delete_url.'" title="Delete meal" style="color:red;"><i class="fa fa-trash"></i></a></td>
+                        </tr>
+                      ';
+                      $i++;
+                      $serial_number++;
+                    }
+                  }
+                ?>
               </tbody>
               <tfoot>
               <tr>
-                <th>Rendering engine</th>
-                <th>Browser</th>
-                <th>Platform(s)</th>
-                <th>Engine version</th>
-                <th>CSS grade</th>
+                <th>S/N</th>
+                <th>Name</th>
+                <th>Cost</th>
+                <th>Image</th>
+                <th>Status</th>
+                <th>Actions</th>
               </tr>
               </tfoot>
             </table>
