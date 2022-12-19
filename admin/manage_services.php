@@ -8,18 +8,7 @@ if($_SESSION["role"] == "Admin"){
     $first_name = $_SESSION["first_name"];
 }
 
-if(!empty($_GET["res"])){
-    $res = $_GET["res"];
-    if($res == "OK"){
-      $res = $_SESSION["success_messge"];
-    }
-    elseif($res == "ERROR"){
-      $res = $_SESSION["post_error"];
-    }
-    elseif($res == "EMPTY"){
-      $res = $_SESSION["post_error"];
-    }
-}
+
 
 include "./api/getServices.php";
 $services = get_services();
@@ -41,7 +30,7 @@ $services = get_services();
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1 class="m-0">Manage Services</h1>
+            <h1 class="m-0">Manage Meals</h1>
           </div><!-- /.col -->
           <div class="col-sm-2">
             <a href="manage_services_add.php" class="btn btn-block bg-gradient-primary"><i class="fa fa-plus"></i> Add New</a>

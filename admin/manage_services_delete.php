@@ -39,7 +39,7 @@ if(!empty($_GET["id"])){
         <div class="container-fluid">
             <div class="row mb-2">
             <div class="col-sm-10">
-                <h1 class="m-0">Manage Services | Delete</h1>
+                <h1 class="m-0">Manage Meals | Delete</h1>
             </div><!-- /.col -->
             <div class="col-sm-2"></div><!-- /.col -->
             </div><!-- /.row -->

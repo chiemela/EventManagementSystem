@@ -35,7 +35,7 @@
           <a href="manage_services.php" class="nav-link">
             <i class="nav-icon fa fa-cog"></i>
             <p>
-              Manage Services
+              Manage Meals
             </p>
           </a>
         </li>

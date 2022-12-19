@@ -87,7 +87,7 @@ if(!empty($_SESSION["post_error"])){
         <div class="container-fluid">
             <div class="row mb-2">
             <div class="col-sm-10">
-                <h1 class="m-0">Manage Services</h1>
+                <h1 class="m-0">Manage Meals</h1>
             </div><!-- /.col -->
             <div class="col-sm-2">
                 <a href="#" class="btn btn-block bg-gradient-primary"><i class="fa fa-plus"></i> Add New</a>
