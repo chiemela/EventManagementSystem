@@ -148,25 +148,27 @@ try {
                         $service_cost = $services[$i]['service_cost'];
                         $image = $services[$i]['image'];
                         $service_availability_status = $services[$i]['service_availability_status'];
-                        echo '
-                           <div class="col-md-4" id="'.$service_id.'">
-                              <div class="img_box">
-                                 <figure><img src="images/'.$image.'" alt="#" class="rounded"/></figure>
-                              </div>';
-                              if(!empty($error_item_id)){
-                                 if($error_item_id == $service_id){
-                                    echo '
-                                       <p style="color:red;">This item is already in the Cart</p>
-                                    ';
-                                 }
-                              }echo'
-                              <p>'.$service_name.'</p>
-                              <p style="margin-top:-10px;">£'.$service_cost.'</p>
-                              <a href="./cart_manager.php?id='.$service_id.$cart_argument.$sending_url.$service_id.'" class="book_btn mt-0 mb-5">Add to Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-                           </div>
-                        ';
+                        // check service_availability_status and if it's "Available" then display on the page
+                        if($service_availability_status == "Available"){
+                           echo '
+                              <div class="col-md-4" id="'.$service_id.'">
+                                 <div class="img_box">
+                                    <figure><img src="images/'.$image.'" alt="#" class="rounded"/></figure>
+                                 </div>';
+                                 if(!empty($error_item_id)){
+                                    if($error_item_id == $service_id){
+                                       echo '
+                                          <p style="color:red;">This item is already in the Cart</p>
+                                       ';
+                                    }
+                                 }echo'
+                                 <p>'.$service_name.'</p>
+                                 <p style="margin-top:-10px;">£'.$service_cost.'</p>
+                                 <a href="./cart_manager.php?id='.$service_id.$cart_argument.$sending_url.$service_id.'" class="book_btn mt-0 mb-5">Add to Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                              </div>
+                           ';
+                        }
                         $i++;
-
                      }
                   }
                ?>
