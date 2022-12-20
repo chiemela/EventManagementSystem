@@ -5,32 +5,23 @@ session_start();
 require_once "../config.php";
 
 if($_SESSION["role"] == "Admin"){
-  $first_name = $_SESSION["first_name"];
+    $first_name = $_SESSION["first_name"];
 }
+// API call
+include "./api/getReport.php";
 
 $email = $_SESSION["email"];
 
-include "./api/getReport.php";
-$report = get_report();
+// get date from URL
+$first_daily_report_date = $last_daily_report_date = $daily_report_date = $_GET["date"];
+$first_daily_report_date .= " 00:00:00";
+$last_daily_report_date .= " 23:59:59";
+$first_daily_report_date = date("Y-m-d H:i:s", strtotime($first_daily_report_date));
+$last_daily_report_date = date("Y-m-d H:i:s", strtotime($last_daily_report_date));
+$report_by_date = get_report_where_date($first_daily_report_date, $last_daily_report_date);
 
+//$report_by_date = get_report();
 
-
-// get all booking date into array
-$date_only_array = array();
-if ($report !== true) {
-  $i = 0;
-  $serial_number = 1;
-  while ($i < count($report)) {
-    $booking_creation_date = $report[$i]['booking_creation_date'];
-    $date_only = date("Y-m-d", strtotime($booking_creation_date));
-    // check if date is already in array before adding it to the array
-    if (!in_array($date_only, $date_only_array)) {
-      $date_only_array[] = $date_only;
-    }
-    $i++;
-    $serial_number++;
-  }
-}
 
 ?>
 
@@ -48,12 +39,11 @@ if ($report !== true) {
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Daily Report</h1>
+          <div class="col-sm-10">
+            <h1 class="m-0">Daily Report | <?php echo $daily_report_date;?></h1>
           </div><!-- /.col -->
-          <div class="col-sm-6">
-            <?php
-            ?>
+          <div class="col-sm-2">
+            <a href="./daily_report.php" class="btn btn-block bg-gradient-primary"><i class="fa fa-arrow-left"></i> Go Back</a>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -73,19 +63,36 @@ if ($report !== true) {
               <thead>
               <tr>
                 <th>S/N</th>
-                <th>Daily Report Date</th>
+                <th>User ID</th>
+                <th>Transaction Ref</th>
+                <th>Vegan Meal ID</th>
+                <th>Booking Cost</th>
+                <th>Reservation Date</th>
+                <th>Reservation Time (24Hr)</th>
+                <th>Attendance</th>
+                <th>Timestamp</th>
               </tr>
               </thead>
               <tbody>
               <?php
-                if ($report !== true) {
+                if ($report_by_date !== true) {
                   $i = 0;
                   $serial_number = 1;
-                  while ($i < count($date_only_array)) {
+                  while ($i < count($report_by_date)) {
+                    $item_id = $report_by_date[$i]['booking_id'];
+                    $booking_id_url = "manage_services_update.php?id=$item_id";
+                    //$delete_url = "manage_services_delete.php?id=$item_id";
                     echo '
                       <tr>
                         <td>'.$serial_number.'</td>
-                        <td><a href="./daily_report_date.php?date='.$date_only_array[$i].'" title="View report details">'.$date_only_array[$i].'&nbsp;&nbsp;<i class="fa fa-calendar"></i></a></td>
+                        <td>'.$report_by_date[$i]['user_id'].'</td>
+                        <td>'.$report_by_date[$i]['transaction_ref'].'</td>
+                        <td>'.$report_by_date[$i]['booking_service_id'].'</td>
+                        <td>£'.$report_by_date[$i]['booking_cost'].'</td>
+                        <td>'.$report_by_date[$i]['booking_date'].'</td>
+                        <td>'.$report_by_date[$i]['booking_time'].'</td>
+                        <td>'.$report_by_date[$i]['number_of_person'].'</td>
+                        <td>'.$report_by_date[$i]['booking_creation_date'].'</td>
                       </tr>
                     ';
                     $i++;
@@ -97,7 +104,14 @@ if ($report !== true) {
               <tfoot>
               <tr>
                 <th>S/N</th>
-                <th>Daily Report Date</th>
+                <th>User ID</th>
+                <th>Transaction Ref</th>
+                <th>Vegan Meal ID</th>
+                <th>Booking Cost</th>
+                <th>Reservation Date</th>
+                <th>Reservation Time (24Hr)</th>
+                <th>Attendance</th>
+                <th>Timestamp</th>
               </tr>
               </tfoot>
             </table>

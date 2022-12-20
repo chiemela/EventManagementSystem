@@ -57,3 +57,17 @@
    });
 </script>
 <!-- end monitor the change in input box -->
+
+
+<?
+// how to console.log in php 
+function console_log($e, $with_script_tags = true) {
+   $js_code = 'console.log(' . json_encode($e, JSON_HEX_TAG) . ');';
+   if ($with_script_tags) {
+         $js_code = '<script>' . $js_code . '</script>';
+   }
+   echo $js_code;
+}
+// then call it like this
+console_log($e);
+?>

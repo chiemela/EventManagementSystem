@@ -30,76 +30,61 @@
  *   ?>
  *   </tbody>
  */
-function get_members() {
+function get_report() {
 
     try {
 
         global $link;
     
-        $reg_no = null;
-        $title = null;
-        $first_name = null;
-        $last_name  = null;
-        $other_name = null;
-        $acc_number = null;
-        $phone = null;
-        $email = null;
-        $address_1 = null;
-        $address_2 = null;
-        $state = null;
-        $gender = null;
-        $next_of_kin = null;
-        $next_of_kin_phone = null;
-        $reg_date = null;
-        $reg_by = null;
-        $last_updated_day = null;
-        $last_updated_month = null;
-        $last_updated_year = null;
-        $last_updated_datetime = null;
-        $creation_date = null;
+        $booking_id = null;
+        $user_id = null;
+        $transaction_ref = null;
+        $booking_service_id  = null;
+        $booking_cost = null;
+        $booking_date = null;
+        $booking_time = null;
+        $number_of_person = true;
+        $transaction_status = true;
+        $booking_creation_date = true;
+        $return_error = true;
     
-        $sql = 'SELECT * FROM members';
+        $sql = 'SELECT * FROM booking';
         $stmnt = $link->prepare($sql);
         $stmnt->execute();
         $stmnt->bind_result(
-                        $reg_no,
-                        $title,
-                        $first_name,
-                        $last_name ,
-                        $other_name,
-                        $acc_number,
-                        $phone,
-                        $email,
-                        $address_1,
-                        $address_2,
-                        $state,
-                        $gender,
-                        $next_of_kin,
-                        $next_of_kin_phone,
-                        $reg_date,
-                        $reg_by,
-                        $last_updated_day,
-                        $last_updated_month,
-                        $last_updated_year,
-                        $last_updated_datetime,
-                        $creation_date
-                    );
+            $booking_id,
+            $user_id,
+            $transaction_ref,
+            $booking_service_id,
+            $booking_cost,
+            $booking_date,
+            $booking_time,
+            $number_of_person,
+            $transaction_status,
+            $booking_creation_date
+        );
     
         while ($stmnt->fetch()) {
     
+            $return_error = false;
             $data[] = array(
           
-                "acc_number" => $acc_number,
-                "title" => $title,
-                "first_name" => $first_name,
-                "last_name" => $last_name,
-                "other_name" => $other_name
+                "booking_id" => $booking_id,
+                "user_id" => $user_id,
+                "transaction_ref" => $transaction_ref,
+                "booking_service_id" => $booking_service_id,
+                "booking_cost" => $booking_cost,
+                "booking_date" => $booking_date,
+                "booking_time" => $booking_time,
+                "number_of_person" => $number_of_person,
+                "transaction_status" => $transaction_status,
+                "booking_creation_date" => $booking_creation_date
         
             );
         
         }
     
-        return $data;
+        return $res = $return_error ? $return_error : $data;
 
     } catch (\Throwable $th) {
         echo $th;
@@ -107,77 +92,65 @@ function get_members() {
 
 }
 
-function get_members_where($acc_number) {
+function get_report_where_date($first_date, $last_date) {
 
     try {
 
         global $link;
     
-        $reg_no = null;
-        $title = null;
-        $first_name = null;
-        $last_name  = null;
-        $other_name = null;
-        // $acc_number = null; this is already passed in the function call
-        $phone = null;
-        $email = null;
-        $address_1 = null;
-        $address_2 = null;
-        $state = null;
-        $gender = null;
-        $next_of_kin = null;
-        $next_of_kin_phone = null;
-        $reg_date = null;
-        $reg_by = null;
-        $last_updated_day = null;
-        $last_updated_month = null;
-        $last_updated_year = null;
-        $last_updated_datetime = null;
-        $creation_date = null;
+        $booking_id = null;
+        $user_id = null;
+        $transaction_ref = null;
+        $booking_service_id  = null;
+        $booking_cost = null;
+        $booking_date = null;
+        $booking_time = null;
+        $number_of_person = true;
+        $transaction_status = true;
+        $booking_creation_date = true;
+        $return_error = true;
     
-        $sql = 'SELECT * FROM members WHERE acc_number = ?';
+        $sql = 'SELECT * FROM booking WHERE booking_creation_date >= ? ORDER BY booking_creation_date ASC';
         $stmnt = $link->prepare($sql);
-        $stmnt->bind_param("s", $acc_number);
+        $stmnt->bind_param("s", $first_date);
         $stmnt->execute();
         $stmnt->bind_result(
-                        $reg_no,
-                        $title,
-                        $first_name,
-                        $last_name ,
-                        $other_name,
-                        $acc_number,
-                        $phone,
-                        $email,
-                        $address_1,
-                        $address_2,
-                        $state,
-                        $gender,
-                        $next_of_kin,
-                        $next_of_kin_phone,
-                        $reg_date,
-                        $reg_by,
-                        $last_updated_day,
-                        $last_updated_month,
-                        $last_updated_year,
-                        $last_updated_datetime,
-                        $creation_date
-                    );
+            $booking_id,
+            $user_id,
+            $transaction_ref,
+            $booking_service_id,
+            $booking_cost,
+            $booking_date,
+            $booking_time,
+            $number_of_person,
+            $transaction_status,
+            $booking_creation_date
+        );
     
         while ($stmnt->fetch()) {
+            
+            if ($booking_creation_date <= $last_date) {
     
-            $data[] = array(
-          
-                "acc_number" => $acc_number,
-                "title" => $title,
-                "first_name" => $first_name,
-                "last_name" => $last_name,
-                "other_name" => $other_name
-        
-            );
+                $return_error = false;
+                $data[] = array(
+            
+                    "booking_id" => $booking_id,
+                    "user_id" => $user_id,
+                    "transaction_ref" => $transaction_ref,
+                    "booking_service_id" => $booking_service_id,
+                    "booking_cost" => $booking_cost,
+                    "booking_date" => $booking_date,
+                    "booking_time" => $booking_time,
+                    "number_of_person" => $number_of_person,
+                    "transaction_status" => $transaction_status,
+                    "booking_creation_date" => $booking_creation_date
+            
+                );
+            }
         
         }
     
-        return $data;
+        return $res = $return_error ? $return_error : $data;
 
     } catch (\Throwable $th) {
         echo $th;

@@ -123,98 +123,98 @@ try {
 
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <!-- site metas -->
-      <title>Booking | Better Than At Home</title>
-      
-      <?php
-         $page = "OTHER";
-         include "./css_link_and_meta.php";
-      ?>
+    <head>
+        <!-- site metas -->
+        <title>Booking | Better Than At Home</title>
+        
+        <?php
+            $page = "OTHER";
+            include "./css_link_and_meta.php";
+        ?>
 
-   </head>
-   <style>
+    </head>
+    <style>
       .nav-horizontal-line {
-         border:none;
-         height: 20px;
-         width: 80%;
-         height: 50px;
-         margin-top: -10px;
-         border-bottom: 1px solid #CDCCCC;
-         box-shadow: 0 20px 20px -20px #333;
-         margin-bottom: 150px;
+        border:none;
+        height: 20px;
+        width: 80%;
+        height: 50px;
+        margin-top: -10px;
+        border-bottom: 1px solid #CDCCCC;
+        box-shadow: 0 20px 20px -20px #333;
+        margin-bottom: 150px;
       }
       .footer-horizontal-line {
-         border:none;
-         width: 100%;
-         border-top: 1px solid #CDCCCC;
+        border:none;
+        width: 100%;
+        border-top: 1px solid #CDCCCC;
       }
-   </style>
-   <!-- body -->
-   <body class="main-layout">
-      <!-- end loader -->
-      <!-- header -->
-      <?php
-         $page = "OTHER";
-         include "./header.php";
-      ?>
-      <!-- end header inner -->
-      <!-- end header -->
-      <!-- our services -->
-      <div class="our">
-         <div class="container">
-            <div class="row">
-                <div class="col-xl-2 col-md-2"></div>
-                <div class="col-xl-8 col-md-8 mb-4">
-                    <!-- Booking page Card  -->
-                    <div class="col-xl-12 col-md-12 mb-4">
-                        <div class="card shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters text-center">
-                                    <div class="col mb-4">
-                                        <figure><img src="images/successful.png" width="200px;" alt="#" class="rounded text-center"/></figure>
+    </style>
+    <!-- body -->
+    <body class="main-layout">
+        <!-- end loader -->
+        <!-- header -->
+        <?php
+            $page = "OTHER";
+            include "./header.php";
+        ?>
+        <!-- end header inner -->
+        <!-- end header -->
+        <!-- payment success -->
+        <div class="our">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-2 col-md-2"></div>
+                    <div class="col-xl-8 col-md-8 mb-4">
+                        <!-- Booking page Card  -->
+                        <div class="col-xl-12 col-md-12 mb-4">
+                            <div class="card shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters text-center">
+                                        <div class="col mb-4">
+                                            <figure><img src="images/successful.png" width="200px;" alt="#" class="rounded text-center"/></figure>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row no-gutters text-center">
-                                    <div class="col mb-4">
-                                        <p style="font-size: 16px;">Payment Successful!</p>
-                                        <p style="margin-top:-10px;">Please check your email for confirmation.</p>
+                                    <div class="row no-gutters text-center">
+                                        <div class="col mb-4">
+                                            <p style="font-size: 16px;">Payment Successful!</p>
+                                            <p style="margin-top:-10px;">Please check your email for confirmation.</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="col-xl-2 col-md-2"></div>
                 </div>
-                <div class="col-xl-2 col-md-2"></div>
             </div>
-         </div>
-      </div>
-      <!-- end our services -->
-      <!--  footer -->
-      <footer id="contact">
-         <div class="">
-            <div class="copyright">
-               <div class="container">
-                  <div class="row footer-horizontal-line">
-                     <div class="col-md-12">
-                        <p class="mt-2">Copyright 2022 Better Than At Home. All Right Reserved.</p>
-                     </div>
-                  </div>
-               </div>
+        </div>
+        <!-- end payment success -->
+        <!--  footer -->
+        <footer id="contact">
+            <div class="">
+                <div class="copyright">
+                <div class="container">
+                    <div class="row footer-horizontal-line">
+                        <div class="col-md-12">
+                            <p class="mt-2">Copyright 2022 Better Than At Home. All Right Reserved.</p>
+                        </div>
+                    </div>
+                </div>
+                </div>
             </div>
-         </div>
-      </footer>
-      <!-- end footer -->
-      <!-- Javascript files-->
-      <script src="js/jquery.min.js"></script>
-      <script src="js/popper.min.js"></script>
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/jquery-3.0.0.min.js"></script>
-      <script src="js/plugin.js"></script>
-      <!-- sidebar -->
-      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="js/custom.js"></script>
-      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-   </body>
+        </footer>
+        <!-- end footer -->
+        <!-- Javascript files-->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/jquery-3.0.0.min.js"></script>
+        <script src="js/plugin.js"></script>
+        <!-- sidebar -->
+        <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="js/custom.js"></script>
+        <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+    </body>
 </html>
 

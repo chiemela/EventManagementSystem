@@ -97,10 +97,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
    }
 }
 } catch (Exception $e) {
-   // do nothing
+   function console_log($e, $with_script_tags = true) {
+      $js_code = 'console.log(' . json_encode($e, JSON_HEX_TAG) . ');';
+      if ($with_script_tags) {
+          $js_code = '<script>' . $js_code . '</script>';
+      }
+      echo $js_code;
+  }
+  console_log($e);
 }
 ?>
-
 
 
 <!DOCTYPE html>
@@ -330,6 +336,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
          </div>
       </div>
       <!-- end testimonial -->
+      
       <!--  footer -->
       <footer id="contact">
          <div class="footer">

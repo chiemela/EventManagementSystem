@@ -38,9 +38,10 @@ if ($page === "INDEX") {
                         // Check if the user is already logged in, if yes then display the Sign out button
                         if(isset($_SESSION["loggedin"])){
                             $first_name = $_SESSION["first_name"];
-                            echo"
+                            echo "
                                 <a href='./booking.php'>
-                                <div class='nav-link' style='margin-left:50px; margin-right:-50px; color:white;'>$first_name&nbsp;<i class='fa fa-shopping-cart' aria-hidden='true'></i></i><span class='badge badge-danger badge-counter'>".$cart_items_count."</span></div></a>
+                                    <div class='nav-link' style='margin-left:50px; margin-right:-50px; color:white;'>$first_name&nbsp;<i class='fa fa-shopping-cart' aria-hidden='true'></i></i><span class='badge badge-danger badge-counter'>".$cart_items_count."</span></div>
+                                </a>
                                 <div class='sign_btn'><a href='logout.php'>Logout&nbsp;<i class='fa fa-sign-out' aria-hidden='true'></i></a></div>
                             ";
                         } else {
