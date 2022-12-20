@@ -62,6 +62,7 @@ $services = get_services();
               <thead>
               <tr>
                 <th>S/N</th>
+                <th>Vegan Meal ID</th>
                 <th>Name</th>
                 <th>Cost</th>
                 <th>Image</th>
@@ -81,6 +82,7 @@ $services = get_services();
                       echo '
                         <tr>
                           <td>'.$serial_number.'</td>
+                          <td>'.$services[$i]['service_id'].'</td>
                           <td>'.$services[$i]['service_name'].'</td>
                           <td>£'.$services[$i]['service_cost'].'</td>
                           <td><img src="../images/'.$services[$i]['image'].'"width="100px;"></td>
@@ -97,6 +99,7 @@ $services = get_services();
               <tfoot>
               <tr>
                 <th>S/N</th>
+                <th>Vegan Meal ID</th>
                 <th>Name</th>
                 <th>Cost</th>
                 <th>Image</th>

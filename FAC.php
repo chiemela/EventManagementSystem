@@ -71,3 +71,9 @@ function console_log($e, $with_script_tags = true) {
 // then call it like this
 console_log($e);
 ?>
+
+<?
+// get current date
+date_default_timezone_set("Europe/London");
+$today = date("F j, Y, g:i a")." local time"; // format is March 10, 2001, 5:16 pm
+?>

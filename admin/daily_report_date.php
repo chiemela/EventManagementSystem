@@ -70,7 +70,7 @@ $report_by_date = get_report_where_date($first_daily_report_date, $last_daily_re
                 <th>Reservation Date</th>
                 <th>Reservation Time (24Hr)</th>
                 <th>Attendance</th>
-                <th>Timestamp</th>
+                <th>Booking Status</th>
               </tr>
               </thead>
               <tbody>
@@ -92,7 +92,7 @@ $report_by_date = get_report_where_date($first_daily_report_date, $last_daily_re
                         <td>'.$report_by_date[$i]['booking_date'].'</td>
                         <td>'.$report_by_date[$i]['booking_time'].'</td>
                         <td>'.$report_by_date[$i]['number_of_person'].'</td>
-                        <td>'.$report_by_date[$i]['booking_creation_date'].'</td>
+                        <td>'.$report_by_date[$i]['booking_status'].'</td>
                       </tr>
                     ';
                     $i++;
@@ -111,7 +111,7 @@ $report_by_date = get_report_where_date($first_daily_report_date, $last_daily_re
                 <th>Reservation Date</th>
                 <th>Reservation Time (24Hr)</th>
                 <th>Attendance</th>
-                <th>Timestamp</th>
+                <th>Booking Status</th>
               </tr>
               </tfoot>
             </table>

@@ -73,7 +73,7 @@ CREATE TABLE `event`.`service` (
     `service_name` VARCHAR(225) NOT NULL , 
     `service_cost` DECIMAL(12, 2) NOT NULL , 
     `image` varchar(75) NOT NULL , 
-    `service_availability_status` VARCHAR(1035) NOT NULL ,
+    `service_availability_status` VARCHAR(100) NOT NULL ,
     `service_last_updated_datetime` DATETIME NULL , 
     `creation_date` DATETIME DEFAULT CURRENT_TIMESTAMP ,
     PRIMARY KEY (`service_id`)
@@ -88,7 +88,8 @@ CREATE TABLE `event`.`booking` (
     `booking_date` DATE NOT NULL , 
     `booking_time` VARCHAR(225) NOT NULL ,
     `number_of_person` INT NOT NULL ,
-    `transaction_status` VARCHAR(225) NOT NULL , 
+    `transaction_status` VARCHAR(225) NOT NULL ,
+    `booking_status` VARCHAR(100) NOT NULL , 
     `booking_creation_date` DATETIME DEFAULT CURRENT_TIMESTAMP ,
     PRIMARY KEY (`booking_id`)
 ) ENGINE = InnoDB;

@@ -22,10 +22,27 @@ if ($report !== true) {
   $serial_number = 1;
   while ($i < count($report)) {
     $booking_creation_date = $report[$i]['booking_creation_date'];
-    $date_only = date("Y-m-d", strtotime($booking_creation_date));
-    // check if date is already in array before adding it to the array
-    if (!in_array($date_only, $date_only_array)) {
-      $date_only_array[] = $date_only;
+    $start_check_date_only = $date_only = date("Y-m-d", strtotime($booking_creation_date));
+    $start_check_date_only  .= " 17:00:00";
+    $start_check_date_only = date("Y-m-d H:i:s", strtotime($start_check_date_only));
+    date_default_timezone_set("Europe/London");
+    $today_half = date("Y-m-d");
+    $today_full = $today_half;
+    $today_full .= " 17:00:00";
+    // check if it is 5pm first before adding report to the table
+    if($date_only < $today_half){
+      // check if date is already in array before adding it to the array
+      if (!in_array($date_only, $date_only_array)) {
+        $date_only_array[] = $date_only;
+      }
+    }elseif($date_only == $today_half){
+      // if the report date it greater than or equal to 5pm then add to array that will display on the screen
+      if($booking_creation_date >= $today_full){
+        // check if date is already in array before adding it to the array
+        if (!in_array($date_only, $date_only_array)) {
+          $date_only_array[] = $date_only;
+        }
+      }
     }
     $i++;
     $serial_number++;

@@ -13,17 +13,18 @@ if(!empty($_COOKIE['transaction_ref'])){
     $booking_time = $_SESSION["get_form_time"];
     $number_of_person = $_SESSION["get_form_person"];
     $transaction_status = "Paid";
+    $booking_status = "Active";
     $email = $_SESSION["email"];
     $first_name = $_SESSION["first_name"];
 }
 
 try {
     // Prepare an insert statement
-    $sql = "INSERT INTO booking (user_id, transaction_ref, booking_service_id, booking_cost, booking_date, booking_time, number_of_person, transaction_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO booking (user_id, transaction_ref, booking_service_id, booking_cost, booking_date, booking_time, number_of_person, transaction_status, booking_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
              
     if($stmt = mysqli_prepare($link, $sql)){
         // Bind variables to the prepared statement as parameters
-        mysqli_stmt_bind_param($stmt, "ssssssss", $param_user_id, $param_transaction_ref, $param_booking_service_id, $booking_cost, $param_booking_date, $param_booking_time, $param_number_of_person, $param_transaction_status);
+        mysqli_stmt_bind_param($stmt, "sssssssss", $param_user_id, $param_transaction_ref, $param_booking_service_id, $booking_cost, $param_booking_date, $param_booking_time, $param_number_of_person, $param_transaction_status, $param_booking_status);
         
         // Set parameters
         $param_user_id = $user_id;
@@ -34,6 +35,7 @@ try {
         $param_booking_time = $booking_time;
         $param_number_of_person = $number_of_person;
         $param_transaction_status = $transaction_status;
+        $param_booking_status = $booking_status;
         
         // Attempt to execute the prepared statement
         if(mysqli_stmt_execute($stmt)){

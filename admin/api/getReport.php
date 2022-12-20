@@ -43,9 +43,10 @@ function get_report() {
         $booking_cost = null;
         $booking_date = null;
         $booking_time = null;
-        $number_of_person = true;
-        $transaction_status = true;
-        $booking_creation_date = true;
+        $number_of_person = null;
+        $transaction_status = null;
+        $booking_creation_date = null;
+        $booking_status = null;
         $return_error = true;
     
         $sql = 'SELECT * FROM booking';
@@ -61,6 +62,7 @@ function get_report() {
             $booking_time,
             $number_of_person,
             $transaction_status,
+            $booking_status,
             $booking_creation_date
         );
     
@@ -68,7 +70,7 @@ function get_report() {
     
             $return_error = false;
             $data[] = array(
-          
+            
                 "booking_id" => $booking_id,
                 "user_id" => $user_id,
                 "transaction_ref" => $transaction_ref,
@@ -78,6 +80,7 @@ function get_report() {
                 "booking_time" => $booking_time,
                 "number_of_person" => $number_of_person,
                 "transaction_status" => $transaction_status,
+                "booking_status" => $booking_status,
                 "booking_creation_date" => $booking_creation_date
         
             );
@@ -105,9 +108,10 @@ function get_report_where_date($first_date, $last_date) {
         $booking_cost = null;
         $booking_date = null;
         $booking_time = null;
-        $number_of_person = true;
-        $transaction_status = true;
-        $booking_creation_date = true;
+        $number_of_person = null;
+        $transaction_status = null;
+        $booking_creation_date = null;
+        $booking_status = null;
         $return_error = true;
     
         $sql = 'SELECT * FROM booking WHERE booking_creation_date >= ? ORDER BY booking_creation_date ASC';
@@ -124,6 +128,7 @@ function get_report_where_date($first_date, $last_date) {
             $booking_time,
             $number_of_person,
             $transaction_status,
+            $booking_status,
             $booking_creation_date
         );
     
@@ -143,6 +148,7 @@ function get_report_where_date($first_date, $last_date) {
                     "booking_time" => $booking_time,
                     "number_of_person" => $number_of_person,
                     "transaction_status" => $transaction_status,
+                    "booking_status" => $booking_status,
                     "booking_creation_date" => $booking_creation_date
             
                 );
