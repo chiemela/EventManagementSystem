@@ -183,6 +183,11 @@ if(!empty($_SESSION["registration_success_messge"])){
     <script src="js/main.js"></script>
 </body>
 <footer>
-    <p class="text-center" style="margin-top: -60px;">Copyright 2022 Better Than At Home. All Right Reserved.</p><br/><br/>
+    <p class="text-center" style="margin-top: -60px;">
+        Copyright 2022 Better Than At Home. All Right Reserved.
+        &nbsp;&nbsp;&nbsp;
+        <a href="../privacy_policy.php">Privacy Policy</a> | 
+        <a href="../terms_of_use.php">Terms of Use</a>
+    </p><br/><br/>
 </footer>
 </html>

@@ -406,7 +406,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                <div class="container">
                   <div class="row">
                      <div class="col-md-12">
-                        <p>Copyright 2022 Better Than At Home. All Right Reserved.</p>
+                        <p class="mt-2">
+                           Copyright 2022 Better Than At Home. All Right Reserved.
+                           &nbsp;&nbsp;&nbsp;
+                           <a href="./privacy_policy.php">Privacy Policy</a> | 
+                           <a href="./terms_of_use.php">Terms of Use</a>
+                        </p>
                      </div>
                   </div>
                </div>

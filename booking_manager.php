@@ -337,7 +337,12 @@ if(!empty($_SESSION["cancel_booking_success_messge"])){
                 <div class="container">
                     <div class="row footer-horizontal-line">
                         <div class="col-md-12">
-                            <p class="mt-2">Copyright 2022 Better Than At Home. All Right Reserved.</p>
+                            <p class="mt-2">
+                                Copyright 2022 Better Than At Home. All Right Reserved.
+                                &nbsp;&nbsp;&nbsp;
+                                <a href="./privacy_policy.php">Privacy Policy</a> | 
+                                <a href="./terms_of_use.php">Terms of Use</a>
+                            </p>
                         </div>
                     </div>
                 </div>
