@@ -261,16 +261,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                  <div class="row">
                                     <div class="col-md-6 margin_boot">
                                        <div class="test_box">
-                                          <h4>Mark jonson</h4>
+                                          <h4>Chiemela N.</h4>
                                           <i><img src="images/te1.png" alt="#"/></i>
-                                          <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</p>
+                                          <p>Better-Than-At-Home provided excellent service and professionalism at short notice to cater for a business lunch. Friendly and great food, with a wide selection to cater for different dietary requirements. Would be very happy to work with Better-Than-At-Home foods again,</p>
                                        </div>
                                     </div>
                                     <div class="col-md-6">
                                        <div class="test_box">
-                                          <h4>Mac Du</h4>
+                                          <h4>Diogo P.</h4>
                                           <i><img src="images/te1.png" alt="#"/></i>
-                                          <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</p>
+                                          <p> just wanted to say thank you for the lunch organised through Better-Than-At_Home Food; the sandwiches and wraps were perfectly fresh, drinks served refreshingly cold – all of which were delivered on time in full..The lunch was very well received by all – so thank you,</p>
                                        </div>
                                     </div>
                                  </div>
@@ -283,16 +283,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                  <div class="row">
                                     <div class="col-md-6 margin_boot">
                                        <div class="test_box">
-                                          <h4>Mark jonson</h4>
+                                          <h4>Muyiwa A.</h4>
                                           <i><img src="images/te1.png" alt="#"/></i>
-                                          <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</p>
+                                          <p>Better-Than-At_Home deliver a super quality, reliable catering to fit any budget. Ordering is simple and the team ensure your event attendees go away happy that they’ve been well looked after. If you need a dependable caterer for any size event, I’d honestly look no further,</p>
                                        </div>
                                     </div>
                                     <div class="col-md-6">
                                        <div class="test_box">
-                                          <h4>Mac Du</h4>
+                                          <h4>Mostafa M.</h4>
                                           <i><img src="images/te1.png" alt="#"/></i>
-                                          <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</p>
+                                          <p>Better-Than-At_Home are a reliable catering company with fantastic service. They will always go above and beyond to try and accommodate our Lunch catering requirements, however obscure. The high quality of their food is also consistent across all orders,</p>
                                        </div>
                                     </div>
                                  </div>
@@ -305,16 +305,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                  <div class="row">
                                     <div class="col-md-6 margin_boot">
                                        <div class="test_box">
-                                          <h4>Mark jonson</h4>
+                                          <h4>Diogo P.</h4>
                                           <i><img src="images/te1.png" alt="#"/></i>
-                                          <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</p>
+                                          <p> just wanted to say thank you for the lunch organised through Better-Than-At_Home Food; the sandwiches and wraps were perfectly fresh, drinks served refreshingly cold – all of which were delivered on time in full..The lunch was very well received by all – so thank you,</p>
                                        </div>
                                     </div>
                                     <div class="col-md-6">
                                        <div class="test_box">
-                                          <h4>Mac Du</h4>
+                                          <h4>Mostafa M.</h4>
                                           <i><img src="images/te1.png" alt="#"/></i>
-                                          <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</p>
+                                          <p>Better-Than-At_Home are a reliable catering company with fantastic service. They will always go above and beyond to try and accommodate our Lunch catering requirements, however obscure. The high quality of their food is also consistent across all orders,</p>
                                        </div>
                                     </div>
                                  </div>

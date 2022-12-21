@@ -18,7 +18,7 @@ include "./api/getReport.php";
 $report = get_report();
 
 $services_check = $services[0]['service_id'];
-$report_check = $services[0]['booking_id'];
+$report_check = $report[0]['booking_id'];
 
 // check if services is empty else make it display 0
 if(!empty($services_check)){

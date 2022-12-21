@@ -90,12 +90,13 @@ try {
             ';
             // prepare the variables for the mail() funtion
             $toEmail = $email;
-            $fromEmail = 'BetterThanAtHome@ase.uk';
+            $fromEmail = 'BetterThanAtHome@ASE_CW1.com';
             $name = 'Mrs A. Cook';
-            $emailSubject = 'New user registration on Better-Than-At-Home';
+            $emailSubject = 'Booking Confirmation';
             $headers = ['From' => $fromEmail, 'Reply-To' => $fromEmail, 'Content-type' => 'text/html; charset=iso-8859-1'];
             $bodyParagraphs = ["Name: {$name}", "Email: {$fromEmail}", "Message:", $message_body];
             $body = join(PHP_EOL, $bodyParagraphs);
+            mail($toEmail, $emailSubject, $body, $headers);
 
 
 
