@@ -13,7 +13,7 @@ if(!empty($_COOKIE['transaction_ref'])){
     $booking_time = $_SESSION["get_form_time"];
     $number_of_person = $_SESSION["get_form_person"];
     $transaction_status = "Paid";
-    $booking_status = "Active";
+    $booking_status = "Booked";
     $email = $_SESSION["email"];
     $first_name = $_SESSION["first_name"];
 }

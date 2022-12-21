@@ -164,4 +164,70 @@ function get_report_where_date($first_date, $last_date) {
 
 }
 
+function get_report_where_user_id($id) {
+
+    try {
+
+        global $link;
+    
+        $booking_id = null;
+        $user_id = null;
+        $transaction_ref = null;
+        $booking_service_id  = null;
+        $booking_cost = null;
+        $booking_date = null;
+        $booking_time = null;
+        $number_of_person = null;
+        $transaction_status = null;
+        $booking_creation_date = null;
+        $booking_status = null;
+        $return_error = true;
+    
+        $sql = 'SELECT * FROM booking WHERE user_id = ?';
+        $stmnt = $link->prepare($sql);
+        $stmnt->bind_param("s", $id);
+        $stmnt->execute();
+        $stmnt->bind_result(
+            $booking_id,
+            $user_id,
+            $transaction_ref,
+            $booking_service_id,
+            $booking_cost,
+            $booking_date,
+            $booking_time,
+            $number_of_person,
+            $transaction_status,
+            $booking_status,
+            $booking_creation_date
+        );
+    
+        while ($stmnt->fetch()) {
+    
+            $return_error = false;
+            $data[] = array(
+        
+                "booking_id" => $booking_id,
+                "user_id" => $user_id,
+                "transaction_ref" => $transaction_ref,
+                "booking_service_id" => $booking_service_id,
+                "booking_cost" => $booking_cost,
+                "booking_date" => $booking_date,
+                "booking_time" => $booking_time,
+                "number_of_person" => $number_of_person,
+                "transaction_status" => $transaction_status,
+                "booking_status" => $booking_status,
+                "booking_creation_date" => $booking_creation_date
+        
+            );
+        
+        }
+    
+        return $res = $return_error ? $return_error : $data;
+
+    } catch (\Throwable $th) {
+        echo $th;
+    }
+
+}
+
 ?>

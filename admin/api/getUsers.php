@@ -94,7 +94,9 @@ function get_users() {
 
 }
 
-function get_user_where($email) {
+
+
+function get_user_where($var) {
 
     try {
 
@@ -105,6 +107,7 @@ function get_user_where($email) {
         $last_name = null;
         $phone  = null;
         $email = null;
+        $password = null;
         $address = null;
         $location = null;
         $role = null;
@@ -114,7 +117,7 @@ function get_user_where($email) {
     
         $sql = 'SELECT * FROM users WHERE email = ?';
         $stmnt = $link->prepare($sql);
-        $stmnt->bind_param("s", $email);
+        $stmnt->bind_param("s", $var);
         $stmnt->execute();
         $stmnt->bind_result(
             $id,
@@ -122,6 +125,7 @@ function get_user_where($email) {
             $last_name,
             $phone,
             $email,
+            $password,
             $address,
             $location,
             $role,
