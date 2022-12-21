@@ -197,64 +197,69 @@ if(!empty($_SESSION["cancel_booking_success_messge"])){
                                             if ($booking_details !== true) {
                                                 $i = 0;
                                                 $serial_number = 1;
+                                                $isAvailable = false;
                                                 while ($i < count($booking_details)) {
-                                                $item_id = $booking_details[$i]['booking_id'];
-                                                $delete_url = "booking_manager_delete.php?id=$item_id";
-                                                echo '
-                                                    <tr>
-                                                    <td>'.$serial_number.'</td>
-                                                    <td>';
-                                                        $meal_items = $booking_details[$i]['booking_service_id'];
-                                                        $meal_items = explode(",", $meal_items);
-                                                        array_pop($meal_items);
-                                                        $meal_items_count = count($meal_items);
-                                                        for($b = 0; $b < $meal_items_count; $b++){
-                                                            // get the cost for meal by their $id
-                                                            $service_id = $meal_items[$b];
-                                                            try {
-                                                                $sqlservice = "SELECT service_name FROM service WHERE service_id = '$service_id'";
-                                                                if($resultservice = mysqli_query($link, $sqlservice)){
-                                                                    if(mysqli_num_rows($resultservice) > 0){
-                                                                        while($rowservice = mysqli_fetch_array($resultservice)){
-                                                                            // Assign mealname
-                                                                            $mealname = $rowservice['service_name'];
-                                                                            echo $mealname.", ";
+                                                    $isAvailable = true;
+                                                    $item_id = $booking_details[$i]['booking_id'];
+                                                    $delete_url = "booking_manager_delete.php?id=$item_id";
+                                                    echo '
+                                                        <tr>
+                                                        <td>'.$serial_number.'</td>
+                                                        <td>';
+                                                            $meal_items = $booking_details[$i]['booking_service_id'];
+                                                            $meal_items = explode(",", $meal_items);
+                                                            array_pop($meal_items);
+                                                            $meal_items_count = count($meal_items);
+                                                            for($b = 0; $b < $meal_items_count; $b++){
+                                                                // get the cost for meal by their $id
+                                                                $service_id = $meal_items[$b];
+                                                                try {
+                                                                    $sqlservice = "SELECT service_name FROM service WHERE service_id = '$service_id'";
+                                                                    if($resultservice = mysqli_query($link, $sqlservice)){
+                                                                        if(mysqli_num_rows($resultservice) > 0){
+                                                                            while($rowservice = mysqli_fetch_array($resultservice)){
+                                                                                // Assign mealname
+                                                                                $mealname = $rowservice['service_name'];
+                                                                                echo $mealname.", ";
+                                                                            }
+                                                                            // Free result set
+                                                                            mysqli_free_result($resultservice);
+                                                                        } else{
+                                                                            echo "<p class='lead'><em>No records were found.</em></p>";
                                                                         }
-                                                                        // Free result set
-                                                                        mysqli_free_result($resultservice);
                                                                     } else{
-                                                                        echo "<p class='lead'><em>No records were found.</em></p>";
+                                                                        echo "ERROR: Could not able to execute $sqlservice. " . mysqli_error($link);
                                                                     }
-                                                                } else{
-                                                                    echo "ERROR: Could not able to execute $sqlservice. " . mysqli_error($link);
+                                                            
+                                                                } catch (\Throwable $th) {
+                                                                    echo $th;
                                                                 }
-                                                        
-                                                            } catch (\Throwable $th) {
-                                                                echo $th;
+                                                                // $services_where = get_services_where($meal_items[$b]);
+                                                                // $service_name = $services_where[0]['service_name'];
                                                             }
-                                                            // $services_where = get_services_where($meal_items[$b]);
-                                                            // $service_name = $services_where[0]['service_name'];
-                                                        }
-                                                        echo ' 
-                                                    </td>
-                                                    <td>£'.$booking_details[$i]['booking_cost'].'</td>
-                                                    <td>'.$booking_details[$i]['booking_date'].'</td>
-                                                    <td>'.$booking_details[$i]['booking_time'].'</td>
-                                                    <td>'.$booking_details[$i]['number_of_person'].'</td>
-                                                    <td>'.$booking_details[$i]['booking_status'].'</td>
-                                                    <td>';
-                                                        if($booking_details[$i]['booking_status'] == "Active"){
-                                                            echo '<a href="'.$delete_url.'" class="btn btn-danger" title="Cancel this booking"><i class="fa fa-times"></i> Cancel</a>';
-                                                        }else{
-                                                            echo 'No Action Required';
-                                                        }
-                                                        
-                                                        echo '
-                                                    </td>
-                                                    </tr>
-                                                ';
-                                                $i++;
-                                                $serial_number++;
+                                                            echo ' 
+                                                        </td>
+                                                        <td>£'.$booking_details[$i]['booking_cost'].'</td>
+                                                        <td>'.$booking_details[$i]['booking_date'].'</td>
+                                                        <td>'.$booking_details[$i]['booking_time'].'</td>
+                                                        <td>'.$booking_details[$i]['number_of_person'].'</td>
+                                                        <td>'.$booking_details[$i]['booking_status'].'</td>
+                                                        <td>';
+                                                            if($booking_details[$i]['booking_status'] == "Booked"){
+                                                                echo '<a href="'.$delete_url.'" class="btn btn-danger" title="Cancel this booking"><i class="fa fa-times"></i> Cancel</a>';
+                                                            }else{
+                                                                echo 'No Action Required';
+                                                            }
+                                                            
+                                                            echo '
+                                                        </td>
+                                                        </tr>
+                                                    ';
+                                                    $i++;
+                                                    $serial_number++;
+                                                }
+                                                if(!$isAvailable){
+                                                    echo "NO RECORD AVAILABLE";
                                                 }
                                             }
                                         ?>

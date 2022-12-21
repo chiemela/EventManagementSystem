@@ -57,7 +57,9 @@ $users = get_users();
                   <th>Email</th>
                   <th>Address</th>
                   <th>Location</th>
+                  <th>Modified Date</th>
                   <th>Reg Date</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -66,6 +68,9 @@ $users = get_users();
                     $i = 0;
                     $serial_number = 1;
                     while ($i < count($users)) {
+                      $item_email = $users[$i]['email'];
+                      $users_email_url = "manage_users_update.php?email=$item_email";
+                      $delete_url = "manage_users_delete.php?email=$item_email";
                       echo '
                         <tr>
                           <td>'.$serial_number.'</td>
@@ -76,7 +81,16 @@ $users = get_users();
                           <td>'.$users[$i]['email'].'</td>
                           <td>'.$users[$i]['address'].'</td>
                           <td>'.$users[$i]['location'].'</td>
+                          <td>';
+                            if($users[$i]['last_updated_datetime'] == null){
+                              echo 'Not yet modified';
+                            }else{
+                              echo $users[$i]['last_updated_datetime'];
+                            }
+                            echo '
+                          </td>
                           <td>'.$users[$i]['creation_date'].'</td>
+                          <td><a href="'.$users_email_url.'" title="Edit meal"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="'.$delete_url.'" title="Delete user" style="color:red;"><i class="fa fa-trash"></i></a></td>
                         </tr>
                       ';
                       $i++;
@@ -95,7 +109,9 @@ $users = get_users();
                   <th>Email</th>
                   <th>Address</th>
                   <th>Location</th>
+                  <th>Modified Date</th>
                   <th>Reg Date</th>
+                  <th>Actions</th>
                 </tr>
               </tfoot>
             </table>

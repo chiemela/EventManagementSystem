@@ -30,42 +30,26 @@
  *   ?>
  *   </tbody>
  */
-function update_users($var1, $var2, $var3, $var4, $var5, $var6, $var7) {
+function delete_user($var1) {
 
     try {
 
         global $link;
     
-        if(!empty($var1) && !empty($var2) && !empty($var3) && !empty($var4) && !empty($var5)){
+        if(!empty($var1)){
             
-            // Attempt update query execution for TABLE
-            $sql = "UPDATE users SET first_name = '$var1', last_name = '$var2', phone = '$var3', address = '$var4', location = '$var5', last_updated_datetime = '$var6' WHERE email = '$var7'";
-    
-            if (mysqli_query($link, $sql)) {
-    
+            // Attempt delete query execution
+            $sql = "DELETE FROM users WHERE email = '$var1'";
+            if(mysqli_query($link, $sql)){
                 // Redirect user to welcome page
                 $URL_redirect = "./manage_users.php?res=OK";
                 header("location: ".$URL_redirect);
-    
-            } else {
-    
-                echo $_SESSION["updateServices_error"] = "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-    
+            } else{
+                $_SESSION["user_delete_error"] = "ERROR: Could not able to execute $sql. " . mysqli_error($link);
                 // Redirect user to welcome page
-                $URL_redirect = "./manage_users.php?res=ERROR";
+                $URL_redirect = "./manage_users.php?res=OK";
                 header("location: ".$URL_redirect);
-    
             }
-    
-        } else {
-    
-            // Destroying session
-            echo $_SESSION["updateServices_error"] = "Form field is empty!";
-    
-            // Redirect user to welcome page
-            $URL_redirect = "./manage_users.php?res=EMPTY";
-            header("location: ".$URL_redirect);
-    
         }
 
     } catch (\Throwable $th) {

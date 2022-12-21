@@ -14,8 +14,26 @@ $users = get_users();
 include "./api/getServices.php";
 $services = get_services();
 
+include "./api/getReport.php";
+$report = get_report();
+
+$services_check = $services[0]['service_id'];
+$report_check = $services[0]['booking_id'];
+
+// check if services is empty else make it display 0
+if(!empty($services_check)){
+  $count_services = count($services);
+}else{
+  $count_services = 0;
+}
+// check if report is empty else make it display 0
+if(!empty($report_check)){
+  $count_report = count($report);
+}else{
+  $count_report = 0;
+}
+
 $count_users = count($users);
-$count_services = count($services);
 ?>
 
 <?php
@@ -66,14 +84,14 @@ $count_services = count($services);
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53</h3>
+                <h3><?php echo $count_report;?></h3>
 
                 <p>Report</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="#" class="small-box-footer">View Report <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="./daily_report.php" class="small-box-footer">View Report <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

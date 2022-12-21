@@ -8,18 +8,17 @@ if($_SESSION["role"] == "Admin"){
     $first_name = $_SESSION["first_name"];
 }
 
-if(!empty($_GET["id"])){
-    $id = $_GET["id"];
+if(!empty($_GET["email"])){
+    $email_id = $_GET["email"];
     $i = 0;
-    include "./api/getServices.php";
-    $services = get_services_where($id);
-    $service_name = $services[$i]['service_name'];
-    $service_cost = $services[$i]['service_cost'];
-    $image = $services[$i]['image'];
-    $service_availability_status = $services[$i]['service_availability_status'];
-    $service_last_updated_datetime = $services[$i]['service_last_updated_datetime'];
-    $creation_date = $services[$i]['creation_date'];
-    $delete_url = "manage_services_delete_process.php?id=$id";
+    include "./api/getUsers.php";
+    $users = get_user_where($email_id);
+    $first_name = $users[$i]['first_name'];
+    $last_name = $users[$i]['last_name'];
+    $phone = $users[$i]['phone'];
+    $address = $users[$i]['address'];
+    $location = $users[$i]['location'];
+    $delete_url = "manage_users_delete_process.php?email_id=$email_id";
 }
 
 ?>
@@ -39,7 +38,7 @@ if(!empty($_GET["id"])){
         <div class="container-fluid">
             <div class="row mb-2">
             <div class="col-sm-10">
-                <h1 class="m-0">Manage Meals | Delete</h1>
+                <h1 class="m-0">Manage Users | Delete</h1>
             </div><!-- /.col -->
             <div class="col-sm-2"></div><!-- /.col -->
             </div><!-- /.row -->
@@ -53,36 +52,31 @@ if(!empty($_GET["id"])){
                 <!-- general form elements -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Delete Vegan Meal</h3>
+                        <h3 class="card-title">Delete User Completely</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
                     <form action="./manage_services_update_process.php?id=<?php echo $id;?>" method="post" autocomplete="off" enctype="multipart/form-data">
                         <div class="card-body">
                             <div class="form-group">
-                                <label>Name of dish</label>
-                                <p><?php echo $service_name;?></p>
+                                <label>First Name</label>
+                                <p><?php echo $first_name;?></p>
                             </div>
                             <div class="form-group">
-                                <label>Cost</label>
-                                <p>£<?php echo $service_cost;?></p>
+                                <label>Last Name</label>
+                                <p><?php echo $last_name;?></p>
                             </div>
                             <div class="form-group">
-                                <label>Dish Image</label>
-                                <br>
-                                <img src="../images/<?php echo $image;?>" width="200px;">
+                                <label>Phone</label>
+                                <p><?php echo $phone;?></p>
                             </div>
                             <div class="form-group">
-                                <label>Status</label>
-                                <p><?php echo $service_availability_status;?></p>
+                                <label>Address</label>
+                                <p><?php echo $address;?></p>
                             </div>
                             <div class="form-group">
-                                <label>Last Update</label>
-                                <p><?php echo $service_last_updated_datetime;?></p>
-                            </div>
-                            <div class="form-group">
-                                <label>Created Date</label>
-                                <p><?php echo $creation_date;?></p>
+                                <label>Location</label>
+                                <p><?php echo $location;?></p>
                             </div>
                         </div><!-- /.card-body -->
                         <div class="card-footer">

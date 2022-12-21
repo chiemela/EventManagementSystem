@@ -44,7 +44,7 @@
             <i class="nav-icon fas fa-file"></i>
             <p>
               Daily Report
-              <span class="badge badge-info right">2</span>
+              <!-- <span class="badge badge-info right">2</span> -->
             </p>
           </a>
         </li>
