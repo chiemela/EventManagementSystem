@@ -151,7 +151,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 Login URL: https://eliamtechnologies.com/event-management-system/auth/sign-in.php.
                                 <br/>
                                 <br/>
-                                Regairds,
+                                Regards,
                                 <br/>
                                 Mrs A. Cook
                                 <br/>

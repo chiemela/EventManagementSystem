@@ -76,7 +76,7 @@ try {
                             Transaction status: '.$transaction_status.'
                             <br/>
                             <br/>
-                            Regairds,
+                            Regards,
                             <br/>
                             Mrs A. Cook
                             <br/>
