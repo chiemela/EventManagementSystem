@@ -4,8 +4,14 @@ session_start();
 // Include config file
 require_once "../config.php";
 
-if($_SESSION["role"] == "Admin"){
-    $first_name = $_SESSION["first_name"];
+if(!empty($_SESSION["role"])){
+    if($_SESSION["role"] == "Admin"){
+        $first_name = $_SESSION["first_name"];
+    }
+}else{
+    // Redirect user to welcome page
+    $URL_redirect = "../index.php";
+    header("location: ".$URL_redirect);
 }
 
 if(!empty($_GET["email"])){

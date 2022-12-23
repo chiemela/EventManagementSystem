@@ -77,3 +77,9 @@ console_log($e);
 date_default_timezone_set("Europe/London");
 $today = date("F j, Y, g:i a")." local time"; // format is March 10, 2001, 5:16 pm
 ?>
+
+<?
+// Redirect user to welcome page
+$URL_redirect = "./manage_users.php?res=OK";
+header("location: ".$URL_redirect);
+?>

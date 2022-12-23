@@ -71,14 +71,15 @@ if(!empty($_SESSION["cart_items"])){
    $VAT = ($subtotal * 20) / 100;
    // calculate Total including VAT
    $_SESSION["booking_cost"] = $total_including_VAT = $subtotal + $VAT;
-}
 
-$email = $_SESSION["email"];
-// get all user info
-include "./admin/api/getUsers.php";
-include "./admin/api/getReport.php";
-$user_details = get_user_where($email);
-$booking_details = get_report_where_user_id($user_details[0]['id']);
+   $email = $_SESSION["email"];
+
+   // get all user info
+   include "./admin/api/getUsers.php";
+   include "./admin/api/getReport.php";
+   $user_details = get_user_where($email);
+   $booking_details = get_report_where_user_id($user_details[0]['id']);
+}
 
 if(!empty($_SESSION["cancel_booking_success_messge"])){
     $cancel_booking_message = $_SESSION["cancel_booking_success_messge"];

@@ -91,5 +91,6 @@ CREATE TABLE `event`.`booking` (
     `transaction_status` VARCHAR(225) NOT NULL ,
     `booking_status` VARCHAR(100) NOT NULL , 
     `booking_creation_date` DATETIME DEFAULT CURRENT_TIMESTAMP ,
-    PRIMARY KEY (`booking_id`)
+    PRIMARY KEY (`booking_id`) ,
+    CONSTRAINT `user_id` FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB;

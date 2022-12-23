@@ -4,8 +4,14 @@ session_start();
 // Include config file
 require_once "../config.php";
 
-if($_SESSION["role"] == "Admin"){
-    $first_name = $_SESSION["first_name"];
+if(!empty($_SESSION["role"])){
+  if($_SESSION["role"] == "Admin"){
+      $first_name = $_SESSION["first_name"];
+  }
+}else{
+  // Redirect user to welcome page
+  $URL_redirect = "../index.php";
+  header("location: ".$URL_redirect);
 }
 
 include "./api/getUsers.php";
@@ -49,7 +55,7 @@ $count_users = count($users);
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row mb-2" >
           <div class="col-sm-6">
             <h1 class="m-0">Dashboard</h1>
           </div><!-- /.col -->
