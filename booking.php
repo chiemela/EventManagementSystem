@@ -285,11 +285,13 @@ if(!empty($_SESSION["cart_items"])){
                         </div>
                         <!-- Replace "test" with your own sandbox Business account app client ID -->
                         <?php
-                           if(!empty($_SESSION["cart_items"])){
-                              echo '
-                                 <p></p><hr/><p></p>
-                                 <script src="https://www.paypal.com/sdk/js?client-id=AeZIaJ8o4faEG3YvSX2is7Erdm_0I4N1rrNehgKM2Fkp6LpakZcbBTYQBLP6_bvaccWoIYv8rrgwtfbC&currency=GBP"></script>
-                              ';
+                           if(isset($_SESSION["loggedin"])){
+                              if(!empty($_SESSION["cart_items"])){
+                                 echo '
+                                    <p></p><hr/><p></p>
+                                    <script src="https://www.paypal.com/sdk/js?client-id=AeZIaJ8o4faEG3YvSX2is7Erdm_0I4N1rrNehgKM2Fkp6LpakZcbBTYQBLP6_bvaccWoIYv8rrgwtfbC&currency=GBP"></script>
+                                 ';
+                              }
                            }
                         ?>
                         <!-- Set up a container element for the button -->

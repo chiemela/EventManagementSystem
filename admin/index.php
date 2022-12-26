@@ -23,8 +23,19 @@ $services = get_services();
 include "./api/getReport.php";
 $report = get_report();
 
-$services_check = $services[0]['service_id'];
-$report_check = $report[0]['booking_id'];
+// check if the value returned is boolean and eqauls "true"
+if(is_bool($services) === true){
+  $services_check = null;
+}else{
+  $services_check = $services[0]['service_id'];
+}
+// check if the value returned is boolean and eqauls "true"
+if(is_bool($report) === true){
+  $report_check = null;
+}else{
+  $report_check = $report[0]['booking_id'];
+}
+
 
 // check if services is empty else make it display 0
 if(!empty($services_check)){
