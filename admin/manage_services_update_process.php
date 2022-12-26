@@ -29,19 +29,17 @@ else{
     $imageExtension = strtolower(end($imageExtension));
     // check if file extension is supported
     if (!in_array($imageExtension, $validImageExtension)){
-        echo "
-            <script>
-                alert('Invalid Image Extension');
-            </script>
-        ";
+        $error_message = 'Invalid Image Extension';
+        // Redirect user to welcome page
+        $URL_redirect = "./manage_services_update.php?id=$id&error=$error_message";
+        header("location: ".$URL_redirect);
     }
     // check if file size is more than 2MB
     else if($fileSize > 2000000){
-        echo "
-            <script>
-                alert('Image size should not be more than 2MB');
-            </script>
-        ";
+        $error_message = 'Image size should not be more than 2MB';
+        // Redirect user to welcome page
+        $URL_redirect = "./manage_services_update.php?id=$id&error=$error_message";
+        header("location: ".$URL_redirect);
     }
     // if all conditoins are met then post into databse
     else{

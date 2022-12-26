@@ -23,6 +23,10 @@ if(!empty($_GET["id"])){
     $service_cost = $services[$i]['service_cost'];
 }
 
+if(!empty($_GET["error"])){
+    $error_message = $_GET["error"];
+}
+
 ?>
 
 <?php
@@ -76,7 +80,14 @@ if(!empty($_GET["id"])){
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="image" class="form-label">Image upload supported file types: .jpg .jpeg .png (Recommended image size: 631 x 530)</label>
+                                <?php
+                                    if(!empty($error_message)){
+                                        echo "
+                                            <span style='color:red;'>$error_message</span><br>
+                                        ";
+                                    }
+                                ?>
+                                <label for="image" class="form-label">Supported file types: .jpg .jpeg .png (Max. image size: 2MB. Recommended image dimensions: 631 x 530)</label>
                                 <input class="form-control" type="file" id="image" name="image" accept=".jpg, .jpeg, .png" required>
                             </div>
                             <!-- select -->
