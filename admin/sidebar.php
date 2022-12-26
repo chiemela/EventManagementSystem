@@ -39,15 +39,21 @@
             </p>
           </a>
         </li>
-        <li class="nav-item">
-          <a href="daily_report.php" class="nav-link">
-            <i class="nav-icon fas fa-file"></i>
-            <p>
-              Daily Report
-              <!-- <span class="badge badge-info right">2</span> -->
-            </p>
-          </a>
-        </li>
+        <?php
+          if($_SESSION["role"] == "Owner"){
+            echo '
+              <li class="nav-item">
+                <a href="daily_report.php" class="nav-link">
+                  <i class="nav-icon fas fa-file"></i>
+                  <p>
+                    Daily Report
+                    <!-- <span class="badge badge-info right">2</span> -->
+                  </p>
+                </a>
+              </li>
+            ';
+          }
+        ?>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

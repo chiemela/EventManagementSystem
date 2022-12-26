@@ -6,7 +6,7 @@ require_once "../config.php";
 
 if(!empty($_SESSION["role"])){
   if($_SESSION["role"] == "Admin"){
-      $first_name = $_SESSION["first_name"];
+    $first_name = $_SESSION["first_name"];
   }
 }else{
   // Redirect user to welcome page
@@ -97,20 +97,26 @@ $count_users = count($users);
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-4">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3><?php echo $count_report;?></h3>
-
-                <p>Report</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-              </div>
-              <a href="./daily_report.php" class="small-box-footer">View Report <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
+          <?php
+            if($_SESSION["role"] == "Owner"){
+              echo '
+                <div class="col-4">
+                  <!-- small box -->
+                  <div class="small-box bg-success">
+                    <div class="inner">
+                      <h3><?php echo $count_report;?></h3>
+      
+                      <p>Report</p>
+                    </div>
+                    <div class="icon">
+                      <i class="ion ion-stats-bars"></i>
+                    </div>
+                    <a href="./daily_report.php" class="small-box-footer">View Report <i class="fas fa-arrow-circle-right"></i></a>
+                  </div>
+                </div>
+              ';
+            }
+          ?>
           <!-- ./col -->
           <div class="col-4">
             <!-- small box -->
