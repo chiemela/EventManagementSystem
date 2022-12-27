@@ -4,8 +4,8 @@ session_start();
 // Include config file
 require_once "../config.php";
 
-if($_SESSION["role"] == "Admin"){
-    $first_name = $_SESSION["first_name"];
+if(!empty($_SESSION["role"])){
+  $first_name = $_SESSION["first_name"];
 }
 // API call
 include "./api/getReport.php";
