@@ -5,9 +5,7 @@ session_start();
 require_once "../config.php";
 
 if(!empty($_SESSION["role"])){
-    if($_SESSION["role"] == "Admin"){
-        $first_name = $_SESSION["first_name"];
-    }
+    $first_name = $_SESSION["first_name"];
 }else{
     // Redirect user to welcome page
     $URL_redirect = "../index.php";

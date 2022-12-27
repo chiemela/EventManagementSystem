@@ -5,9 +5,7 @@ session_start();
 require_once "../config.php";
 
 if(!empty($_SESSION["role"])){
-  if($_SESSION["role"] == "Admin"){
-    $first_name = $_SESSION["first_name"];
-  }
+  $first_name = $_SESSION["first_name"];
 }else{
   // Redirect user to welcome page
   $URL_redirect = "../index.php";
@@ -104,7 +102,9 @@ $count_users = count($users);
                   <!-- small box -->
                   <div class="small-box bg-success">
                     <div class="inner">
-                      <h3><?php echo $count_report;?></h3>
+                      <h3>';
+                        echo $count_report; echo'
+                      </h3>
       
                       <p>Report</p>
                     </div>
