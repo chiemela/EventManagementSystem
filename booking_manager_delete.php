@@ -25,6 +25,19 @@ if(!empty($_GET["id"])){
     $booking_time = $booking_id_where[0]['booking_time'];
     $number_of_person = $booking_id_where[0]['number_of_person'];
     $transaction_status = $booking_id_where[0]['transaction_status'];
+
+
+    echo "<br>".$booking_id_for_email;
+    echo "<br>".$user_id;
+    echo "<br>".$transaction_ref;
+    echo "<br>".$booking_service_id;
+    echo "<br>".$booking_cost;
+    echo "<br>".$booking_date;
+    echo "<br>".$booking_time;
+    echo "<br>".$number_of_person;
+    echo "<br>".$transaction_status;
+
+
     // send confirmation email
     date_default_timezone_set("Europe/London");
     $today = date("F j, Y, g:i a")." local time"; // format is March 10, 2001, 5:16 pm
@@ -97,6 +110,6 @@ if(!empty($_GET["id"])){
 }else{
     // Redirect user to welcome page
     $URL_redirect = "./booking_manager.php?res=UNIDENTIFIED_ID";
-    header("location: ".$URL_redirect);
+    // header("location: ".$URL_redirect);
 }
 ?>

@@ -83,7 +83,9 @@ Figure 66c, Try to pay when there are items in the cart with sufficient balance 
 Figure 66d, Try to pay when there are items in the cart with sufficient balance in the PayPal sandbox personal account.
 Figure 66e, Try to pay when there are items in the cart with sufficient balance in the PayPal sandbox personal account.
 Figure 66f, Try to pay when there are items in the cart with sufficient balance in the PayPal sandbox personal account.
-
+Figure 67a, Try to pay when there is no sufficient balance in user PayPal account.
+Figure 67b, Try to pay when there is no sufficient balance in user PayPal account.
+Figure 67c, Try to pay when there is no sufficient balance in user PayPal account.
 
 
 

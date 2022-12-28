@@ -249,7 +249,7 @@ function get_report_where_booking_id($id) {
         $booking_status = null;
         $return_error = true;
     
-        $sql = 'SELECT * FROM booking WHERE user_id = ?';
+        $sql = 'SELECT * FROM booking WHERE booking_id = ?';
         $stmnt = $link->prepare($sql);
         $stmnt->bind_param("s", $id);
         $stmnt->execute();

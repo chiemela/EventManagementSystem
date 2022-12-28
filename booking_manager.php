@@ -201,7 +201,7 @@ if(!empty($_SESSION["cancel_booking_success_messge"])){
                                                 while ($i < count($booking_details)) {
                                                     $isAvailable = true;
                                                     $item_id = $booking_details[$i]['booking_id'];
-                                                    $delete_url = "booking_manager_delete.php?id=$item_id";
+                                                    $delete_url = "./booking_manager_delete.php?id=$item_id";
                                                     echo '
                                                         <tr>
                                                         <td>'.$serial_number.'</td>
