@@ -8,6 +8,7 @@ if(!empty($_COOKIE['getDate'])){
 session_start();
 // Include config file
 require_once "./config.php";
+// add item to cart and get all items from cart
 try {
    if($_SERVER["REQUEST_METHOD"] == "POST"){
       if(!empty($_POST["date"]) && !empty($_POST["time"]) && !empty($_POST["person"])){

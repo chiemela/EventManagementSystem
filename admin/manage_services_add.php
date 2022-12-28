@@ -13,6 +13,7 @@ if(!empty($_SESSION["role"])){
 }
 
 // Processing form data when form is submitted
+// check if image file meets all requirements before saving
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     // import API
     include "./api/postServices.php";

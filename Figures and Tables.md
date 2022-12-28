@@ -50,23 +50,39 @@ Figure 45b, Load bootstrap Javascript alternative.
 Figure 46a, Putting it all together
 Figure 46b, Putting it all together
 Figure 47, Loading custom CSS using PHP include statement.
-Figure 48, deleteServices.php API script
-Figure 49, deleteUser.php API script
-Figure 50, getReport.php API script
-Figure 51, getServices.php API script
-Figure 52, getServices.php API script
-Figure 53, postServices.php API script
-Figure 54, updateBooking.php API script
-Figure 55, updateServices.php API script
-Figure 56, updateUsers.php API script
-Figure 57, The reason why mail() function no longer works in XAMPP
-
-
-
-
-
-
-
+Figure 48, deleteServices.php API script.
+Figure 49, deleteUser.php API script.
+Figure 50, getReport.php API script.
+Figure 51, getServices.php API script.
+Figure 52, getServices.php API script.
+Figure 53, postServices.php API script.
+Figure 54, updateBooking.php API script.
+Figure 55, updateServices.php API script.
+Figure 56, updateUsers.php API script.
+Figure 57, The reason why mail() function no longer works in XAMPP.
+Figure 58, Try clicking PayPal button when user is not logged in.
+Figure 59a, Try clicking PayPal button when user is logged in.
+Figure 59b, Try clicking PayPal button when user is logged in.
+Figure 60a, Try booking when no meal is available.
+Figure 60b, Try booking when no meal is available.
+Figure 61a, Try Clicking the PayPal button when meal is available.
+Figure 61b, Try Clicking the PayPal button when meal is available.
+Figure 62, Try Clicking the PayPal button when user did not input date, time, and person.
+Figure 63a, Try Clicking the PayPal button hen user inputs date, time, and person.
+Figure 63b, Try Clicking the PayPal button hen user inputs date, time, and person.
+Figure 63c, Try Clicking the PayPal button hen user inputs date, time, and person.
+Figure 63d, Try Clicking the PayPal button hen user inputs date, time, and person.
+Figure 64a, Try to cancel booking.
+Figure 64b, Try to cancel booking.
+Figure 64c, Try to cancel booking.
+Figure 65a, Try to pay when there is no item in the cart.
+Figure 65b, Try to pay when there is no item in the cart.
+Figure 66a, Try to pay when there are items in the cart with sufficient balance in the PayPal sandbox personal account.
+Figure 66b, Try to pay when there are items in the cart with sufficient balance in the PayPal sandbox personal account.
+Figure 66c, Try to pay when there are items in the cart with sufficient balance in the PayPal sandbox personal account.
+Figure 66d, Try to pay when there are items in the cart with sufficient balance in the PayPal sandbox personal account.
+Figure 66e, Try to pay when there are items in the cart with sufficient balance in the PayPal sandbox personal account.
+Figure 66f, Try to pay when there are items in the cart with sufficient balance in the PayPal sandbox personal account.
 
 
 
