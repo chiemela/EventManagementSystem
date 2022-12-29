@@ -34,10 +34,12 @@ try {
       
       $sending_url = "&sending_url=services.php#";
       $cart_argument = "&cart_argument=SET";
+
       function redirect_to_booking_page(){
          // Redirect user to welcome page
          header("location: ./booking.php");
       }
+      
       // get cart item
       if(!empty($_SESSION["cart_items"])){
          $cart_items = $_SESSION["cart_items"];
