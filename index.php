@@ -84,10 +84,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       ';
 
       // To send HTML mail, the Content-type header must be set
-      $toEmail = $email;
-      $fromEmail = 'BetterThanAtHome@ase.uk';
-      $name = 'Mrs A. Cook';
-      $emailSubject = 'New email from your Better-Than-At-Home contant form';
+      $toEmail = 'chiemela123@gmail.com';
+      $fromEmail = $email;
+      $name = 'Better-Than-At-Home Contact form';
+      $emailSubject = 'New email from your Better-Than-At-Home contact form';
       $headers = ['From' => $fromEmail, 'Reply-To' => $fromEmail, 'Content-type' => 'text/html; charset=iso-8859-1'];
       $bodyParagraphs = ["Name: {$name}", "Email: {$fromEmail}", "Message:", $message_body];
       $body = join(PHP_EOL, $bodyParagraphs);
